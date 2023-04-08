@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<AssemblyName>MOROPO.Framework.Guama.Media.Presentation.Web.Common</AssemblyName>
+	<RootNamespace>MOROPO.Framework.Guama.Media.Presentation.Web.Common</RootNamespace>
+	<PackageId>GuamaFramework.Media.Presentation.Web.Common</PackageId>
+	<Product>GuamaFramework</Product>
+	<Authors>MOROPO DotNet DevTeam</Authors>
+	<Company>MOROPO S.U.R.L.</Company>
+	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
+	<Version>6.0.0.1</Version>
+	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj" />
+    <ProjectReference Include="..\Guama.Media.Persistence.ORM.EF\Guama.Media.Persistence.ORM.EF.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Repositories
+{
+    public class LocalityRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.Locality, System.Guid>
+    {
+        public LocalityRepository(DbContext dbContext) : base(dbContext)
+        {
+        }
+
+        public override System.Func<Entities.Locality, object> GetPagingOrderSelector()
+        {
+            return e => e.Name;
+        }
+
+        protected override System.Linq.IQueryable<Entities.Locality> GetQueryableDbSet()
+        {
+            return base.GetQueryableDbSet()
+                .Include(e => e.Municipality).ThenInclude(e => e.State).ThenInclude(e => e.Region).ThenInclude(e => e.Country);
+        }
+    }
+}

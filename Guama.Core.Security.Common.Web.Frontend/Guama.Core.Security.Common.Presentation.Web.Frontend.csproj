@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<AssemblyName>MOROPO.Framework.Guama.Core.Security.Common.Web.Frontend</AssemblyName>
+	<RootNamespace>MOROPO.Framework.Guama.Core.Security.Common.Web.Frontend</RootNamespace>
+	<PackageId>GuamaFramework.Core.Security.Common.Web.Frontend</PackageId>
+	<Product>GuamaFramework</Product>
+	<Authors>MOROPO DotNet DevTeam</Authors>
+	<Company>MOROPO S.U.R.L.</Company>
+	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
+	<Version>6.0.0.1</Version>
+	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guama.Core.Presentation.Web.Frontend\Guama.Core.Presentation.Web.Frontend.csproj" />
+    <ProjectReference Include="..\Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj" />
+  </ItemGroup>
+
+</Project>

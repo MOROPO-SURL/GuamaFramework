@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<AssemblyName>MOROPO.Framework.Guama.Core.Persistence</AssemblyName>
+	<RootNamespace>MOROPO.Framework.Guama.Core.Persistence</RootNamespace>
+	<PackageId>GuamaFramework.Core.Persistence</PackageId>
+	<Product>GuamaFramework</Product>
+	<Authors>MOROPO DotNet DevTeam</Authors>
+	<Company>MOROPO S.U.R.L.</Company>
+	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
+	<Version>6.0.0.1</Version>
+	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
