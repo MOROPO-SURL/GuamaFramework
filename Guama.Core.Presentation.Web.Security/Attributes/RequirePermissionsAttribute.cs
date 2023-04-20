@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Threading.Tasks;
-using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Requirements;
+using Microsoft.Extensions.DependencyInjection;
 using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Constants;
+using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Requirements;
+using System.Threading.Tasks;
 
 namespace MOROPO.Framework.Guama.Core.Presentation.Web.Security.Attributes
 {
     public class RequirePermissionsAttribute : TypeFilterAttribute
     {
-        public RequirePermissionsAttribute(params string[] roles) : base(typeof(RequiresPermissionAttributeExecutor))
+        public RequirePermissionsAttribute(params string[] premissions) : base(typeof(RequiresPermissionAttributeExecutor))
         {
-            Arguments = new[] { new RoleAuthorizationRequirement(roles) };
+            Arguments = new[] { new PermissionAuthorizationRequirement(premissions) };
         }
 
         private class RequiresPermissionAttributeExecutor : System.Attribute, IAsyncResourceFilter
         {
-            private readonly RoleAuthorizationRequirement requiredRolePermissions;
+            private readonly PermissionAuthorizationRequirement requiredRolePermissions;
 
-            public RequiresPermissionAttributeExecutor(RoleAuthorizationRequirement requiredRolePermissions)
+            public RequiresPermissionAttributeExecutor(PermissionAuthorizationRequirement requiredRolePermissions)
             {
                 this.requiredRolePermissions = requiredRolePermissions;
             }
@@ -26,16 +27,25 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Security.Attributes
             {
                 var authorized = context.HttpContext.User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString()));
 
+                var roleProvider = context.HttpContext.RequestServices.GetService<Providers.Facade.IRoleIdProviderFacade>();
+
                 if (!authorized)
                 {
-                    foreach (var requiredRole in requiredRolePermissions.Roles)
+                    foreach (var permission in requiredRolePermissions.Permissions)
                     {
-                        if (context.HttpContext.User.IsInRole(requiredRole))
-                        {
-                            authorized = true;
+                        var roles = roleProvider.GetByPermission(permission);
 
-                            break;
+                        foreach (var role in roles)
+                        {
+                            if (context.HttpContext.User.IsInRole(role.ToString()))
+                            {
+                                authorized = true;
+
+                                break;
+                            }
                         }
+
+                        if (authorized) break;
                     }
                 }
 

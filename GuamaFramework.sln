@@ -3,65 +3,88 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Persistence", "Guama.Core.Persistence\Guama.Core.Persistence.csproj", "{D955718D-AF01-4E09-A9FC-37EF8DCB52F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Persistence", "Guama.Core.Persistence\Guama.Core.Persistence.csproj", "{D955718D-AF01-4E09-A9FC-37EF8DCB52F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation", "Guama.Core.Common\Guama.Core.Presentation.csproj", "{4478E9D2-9D90-4981-BD06-DF82587855AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation", "Guama.Core.Presentation\Guama.Core.Presentation.csproj", "{4478E9D2-9D90-4981-BD06-DF82587855AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Persistence.ORM.EF", "Guama.Core.Persistence.ORM.EF\Guama.Core.Persistence.ORM.EF.csproj", "{6BB8E997-81F4-4BBD-9EA9-1CBF4F02450B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Persistence.ORM.EF", "Guama.Core.Persistence.ORM.EF\Guama.Core.Persistence.ORM.EF.csproj", "{6BB8E997-81F4-4BBD-9EA9-1CBF4F02450B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Persistence.Presentation", "Guama.Core.Persistence.Presentation\Guama.Core.Persistence.Presentation.csproj", "{8DFD1012-6A5A-49BC-9FE8-6A69D5BF835E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Persistence.Presentation", "Guama.Core.Persistence.Presentation\Guama.Core.Persistence.Presentation.csproj", "{8DFD1012-6A5A-49BC-9FE8-6A69D5BF835E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation.API.Connect", "Guama.Core.API.Connect\Guama.Core.Presentation.API.Connect.csproj", "{E83CAD00-3B26-48AE-8853-3B280E93F8FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.API.Connect", "Guama.Core.API.Connect\Guama.Core.Presentation.API.Connect.csproj", "{E83CAD00-3B26-48AE-8853-3B280E93F8FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Security.Common.Persistence", "Guama.Core.Security.Common.Persistence\Guama.Core.Security.Common.Persistence.csproj", "{F02EB282-5474-4E06-99FB-BFFB979EAB82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Security.Common.Persistence", "Guama.Core.Security.Common.Persistence\Guama.Core.Security.Common.Persistence.csproj", "{F02EB282-5474-4E06-99FB-BFFB979EAB82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Security.Common.Persistence.ORM.EF", "Guama.Core.Security.Common.Persistence.ORM.EF\Guama.Core.Security.Common.Persistence.ORM.EF.csproj", "{DE09CF3A-AC00-4058-BBE2-9728376AD2EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Security.Common.Persistence.ORM.EF", "Guama.Core.Security.Common.Persistence.ORM.EF\Guama.Core.Security.Common.Persistence.ORM.EF.csproj", "{DE09CF3A-AC00-4058-BBE2-9728376AD2EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Security.Common.Presentation.Web.Frontend", "Guama.Core.Security.Common.Web.Frontend\Guama.Core.Security.Common.Presentation.Web.Frontend.csproj", "{856D53D8-8049-478C-861E-897845969864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Security.Common.Presentation.Web.Frontend", "Guama.Core.Security.Common.Presentation.Web.Frontend\Guama.Core.Security.Common.Presentation.Web.Frontend.csproj", "{856D53D8-8049-478C-861E-897845969864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation.Web.Common", "Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj", "{8049A769-DB45-4D77-BA0A-EE23D5E4AE73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.Common", "Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj", "{8049A769-DB45-4D77-BA0A-EE23D5E4AE73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation.Web.Frontend", "Guama.Core.Presentation.Web.Frontend\Guama.Core.Presentation.Web.Frontend.csproj", "{D9508865-2B53-44CA-A2FE-915E0BE8468B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.Frontend", "Guama.Core.Presentation.Web.Frontend\Guama.Core.Presentation.Web.Frontend.csproj", "{D9508865-2B53-44CA-A2FE-915E0BE8468B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation.Web.Backend", "Guama.Core.Presentation.Web.Backend\Guama.Core.Presentation.Web.Backend.csproj", "{1A935FA9-6E39-48BB-A028-03EADF2B9751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.Backend", "Guama.Core.Presentation.Web.Backend\Guama.Core.Presentation.Web.Backend.csproj", "{1A935FA9-6E39-48BB-A028-03EADF2B9751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Presentation.Web.Security", "Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj", "{6D16A633-2569-46EE-ACA5-202B9BB19B76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.Security", "Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj", "{6D16A633-2569-46EE-ACA5-202B9BB19B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Security.Common.Presentation.Web.Backend", "Guama.Core.Security.Common.Web.Backend\Guama.Core.Security.Common.Presentation.Web.Backend.csproj", "{5275A71B-1E87-4615-847A-8B5E0EEA2257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Security.Common.Presentation.Web.Backend", "Guama.Core.Security.Common.Presentation.Web.Backend\Guama.Core.Security.Common.Presentation.Web.Backend.csproj", "{5275A71B-1E87-4615-847A-8B5E0EEA2257}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A0EE24D2-C0B3-4FDE-BF67-67EF8688B897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Media.Persistence", "Guama.Media.Persistence\Guama.Media.Persistence.csproj", "{A79004E0-2AF4-44C9-AE3C-F3511A624639}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Media.Persistence", "Guama.Media.Persistence\Guama.Media.Persistence.csproj", "{A79004E0-2AF4-44C9-AE3C-F3511A624639}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Media", "Media", "{98091C97-51EB-4278-9E08-0D4180EFAED6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Media.Persistence.ORM.EF", "Guama.Media.Persistence.ORM.EF\Guama.Media.Persistence.ORM.EF.csproj", "{B0864D32-2F41-487E-8FEE-A4060CF6B1AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Media.Persistence.ORM.EF", "Guama.Media.Persistence.ORM.EF\Guama.Media.Persistence.ORM.EF.csproj", "{B0864D32-2F41-487E-8FEE-A4060CF6B1AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Media.Presentation.Web.Common", "Guama.Media.Presentation.Web.Common\Guama.Media.Presentation.Web.Common.csproj", "{5F1A6538-532F-4C0D-A7CE-5326A7AA318C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Media.Presentation.Web.Common", "Guama.Media.Presentation.Web.Common\Guama.Media.Presentation.Web.Common.csproj", "{5F1A6538-532F-4C0D-A7CE-5326A7AA318C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Media.Presentation.Web.Frontend", "Guama.Media.Presentation.Web.Frontend\Guama.Media.Presentation.Web.Frontend.csproj", "{C22D2394-12B3-4C3F-BDD1-509A4CBDD263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Media.Presentation.Web.Frontend", "Guama.Media.Presentation.Web.Frontend\Guama.Media.Presentation.Web.Frontend.csproj", "{C22D2394-12B3-4C3F-BDD1-509A4CBDD263}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Location", "Location", "{63360FF0-86FE-410D-B9FE-55D5104D99AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Location.Persistence", "Guama.Location.Persistence\Guama.Location.Persistence.csproj", "{1A987E2A-38E4-4589-8F42-3BA8F72A9826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Location.Persistence", "Guama.Location.Persistence\Guama.Location.Persistence.csproj", "{1A987E2A-38E4-4589-8F42-3BA8F72A9826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Location.Persistence.ORM.EF", "Guama.Location.Persistence.ORM.EF\Guama.Location.Persistence.ORM.EF.csproj", "{DF8D0E55-6605-47D6-B279-0CCFFBC10DDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Location.Persistence.ORM.EF", "Guama.Location.Persistence.ORM.EF\Guama.Location.Persistence.ORM.EF.csproj", "{DF8D0E55-6605-47D6-B279-0CCFFBC10DDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Location.Presentation.Web.Common", "Guama.Location.Presentation.Web.Common\Guama.Location.Presentation.Web.Common.csproj", "{83E996AC-B8BA-4C13-8690-FD94B848FD4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Location.Presentation.Web.Common", "Guama.Location.Presentation.Web.Common\Guama.Location.Presentation.Web.Common.csproj", "{83E996AC-B8BA-4C13-8690-FD94B848FD4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Core.Security.Common.Presentation", "Guama.Core.Security.Common.Presentation\Guama.Core.Security.Common.Presentation.csproj", "{4B729F7A-4B56-4C4B-84CE-6459B21EF9A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Security.Common.Presentation", "Guama.Core.Security.Common.Presentation\Guama.Core.Security.Common.Presentation.csproj", "{4B729F7A-4B56-4C4B-84CE-6459B21EF9A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Location.Presentation", "Guama.Location.Presentation\Guama.Location.Presentation.csproj", "{25AABBAB-86AE-4714-987D-F018AA0503B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Location.Presentation", "Guama.Location.Presentation\Guama.Location.Presentation.csproj", "{25AABBAB-86AE-4714-987D-F018AA0503B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Location.Presentation.Web.Backend", "Guama.Location.Presentation.Web.Backend\Guama.Location.Presentation.Web.Backend.csproj", "{A16AF72D-7E1D-49BF-8192-E7921F1A70DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Location.Presentation.Web.Backend", "Guama.Location.Presentation.Web.Backend\Guama.Location.Presentation.Web.Backend.csproj", "{A16AF72D-7E1D-49BF-8192-E7921F1A70DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{B33CBFD1-78D4-4740-9419-421EE3AFEF2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Identity.Persistence", "Guama.Identity.Persistence\Guama.Identity.Persistence.csproj", "{645BDDC0-D5BF-414D-8151-ED08879577CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Identity.Persistence", "Guama.Identity.Persistence\Guama.Identity.Persistence.csproj", "{645BDDC0-D5BF-414D-8151-ED08879577CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Identity.Persistence.ORM.EF", "Guama.Identity.Persistence.ORM.EF\Guama.Identity.Persistence.ORM.EF.csproj", "{3A524D52-021A-453B-9808-0D24D7A2D646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Identity.Persistence.ORM.EF", "Guama.Identity.Persistence.ORM.EF\Guama.Identity.Persistence.ORM.EF.csproj", "{3A524D52-021A-453B-9808-0D24D7A2D646}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Identity.Presentation.Web.Common", "Guama.Identity.Presentation.Web.Common\Guama.Identity.Presentation.Web.Common.csproj", "{A1672008-034A-49D5-9548-118DC7C01A5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Identity.Presentation.Web.Common", "Guama.Identity.Presentation.Web.Common\Guama.Identity.Presentation.Web.Common.csproj", "{A1672008-034A-49D5-9548-118DC7C01A5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{0DB7D7FF-730C-4350-802F-7277B5720DCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Essential", "Essential", "{5B61223F-B7E5-40F2-B11D-5ECF7147A3E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Personal", "Personal", "{E286341A-F19B-468D-B8FC-8E924E81348C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Personal.Persistence", "Guama.Security.Personal.Persistence\Guama.Security.Personal.Persistence.csproj", "{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Personal.Persistence.ORM.EF", "Guama.Security.Personal.Persistence.ORM.EF\Guama.Security.Personal.Persistence.ORM.EF.csproj", "{006E68EB-7662-46C8-989A-93555A5A76B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Personal.Presentation.Web.Common", "Guama.Security.Personal.Presentation.Web.Common\Guama.Security.Personal.Presentation.Web.Common.csproj", "{1261778A-AB3D-40DB-A8C9-C46B5B65626C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Personal.Presentation.Web.Backend", "Guama.Security.Personal.Presentation.Web.Backend\Guama.Security.Personal.Presentation.Web.Backend.csproj", "{B85104FE-B163-466E-A1F0-106E5FC4A266}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{AFC4D2D7-5452-4755-A3A6-F4B039871ECD}"
+	ProjectSection(SolutionItems) = preProject
+		PublishNuget.bat = PublishNuget.bat
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.API", "Guama.Core.Presentation.Web.API\Guama.Core.Presentation.Web.API.csproj", "{7D12E132-F06A-4AAA-800C-1BC92514799F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Tool.Debug.Security.Personal", "Guama.Tool.Debug.Security.Personal\Guama.Tool.Debug.Security.Personal.csproj", "{4346FC8E-1D66-4F05-A688-78A84F2A60B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -173,6 +196,30 @@ Global
 		{A1672008-034A-49D5-9548-118DC7C01A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1672008-034A-49D5-9548-118DC7C01A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1672008-034A-49D5-9548-118DC7C01A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{006E68EB-7662-46C8-989A-93555A5A76B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{006E68EB-7662-46C8-989A-93555A5A76B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{006E68EB-7662-46C8-989A-93555A5A76B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{006E68EB-7662-46C8-989A-93555A5A76B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1261778A-AB3D-40DB-A8C9-C46B5B65626C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1261778A-AB3D-40DB-A8C9-C46B5B65626C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1261778A-AB3D-40DB-A8C9-C46B5B65626C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1261778A-AB3D-40DB-A8C9-C46B5B65626C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B85104FE-B163-466E-A1F0-106E5FC4A266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B85104FE-B163-466E-A1F0-106E5FC4A266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B85104FE-B163-466E-A1F0-106E5FC4A266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B85104FE-B163-466E-A1F0-106E5FC4A266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D12E132-F06A-4AAA-800C-1BC92514799F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D12E132-F06A-4AAA-800C-1BC92514799F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D12E132-F06A-4AAA-800C-1BC92514799F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D12E132-F06A-4AAA-800C-1BC92514799F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,6 +251,14 @@ Global
 		{645BDDC0-D5BF-414D-8151-ED08879577CC} = {B33CBFD1-78D4-4740-9419-421EE3AFEF2D}
 		{3A524D52-021A-453B-9808-0D24D7A2D646} = {B33CBFD1-78D4-4740-9419-421EE3AFEF2D}
 		{A1672008-034A-49D5-9548-118DC7C01A5E} = {B33CBFD1-78D4-4740-9419-421EE3AFEF2D}
+		{5B61223F-B7E5-40F2-B11D-5ECF7147A3E7} = {0DB7D7FF-730C-4350-802F-7277B5720DCE}
+		{E286341A-F19B-468D-B8FC-8E924E81348C} = {0DB7D7FF-730C-4350-802F-7277B5720DCE}
+		{AA3AE2CF-87D6-4477-AB40-E3C37E5221CA} = {E286341A-F19B-468D-B8FC-8E924E81348C}
+		{006E68EB-7662-46C8-989A-93555A5A76B8} = {E286341A-F19B-468D-B8FC-8E924E81348C}
+		{1261778A-AB3D-40DB-A8C9-C46B5B65626C} = {E286341A-F19B-468D-B8FC-8E924E81348C}
+		{B85104FE-B163-466E-A1F0-106E5FC4A266} = {E286341A-F19B-468D-B8FC-8E924E81348C}
+		{7D12E132-F06A-4AAA-800C-1BC92514799F} = {A0EE24D2-C0B3-4FDE-BF67-67EF8688B897}
+		{4346FC8E-1D66-4F05-A688-78A84F2A60B0} = {AFC4D2D7-5452-4755-A3A6-F4B039871ECD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F001066-21FC-44E9-97D0-8DCABFC767BD}

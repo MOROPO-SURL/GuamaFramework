@@ -9,10 +9,10 @@ namespace MOROPO.Framework.Guama.Identity.Presentation.Web.Common.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void PerformMiddlewareIdentityWebCommonServiceRegistration(this IServiceCollection services)
+        public static void PerformIdentityWebCommonServiceRegistration(this IServiceCollection services)
         {
-            services.PerformMiddlewareMediaWebCommonServiceRegistration();
-            services.PerformMiddlewareRegionWebCommonServiceRegistration();
+            services.PerformMediaWebCommonServiceRegistration();
+            services.PerformLocationWebCommonServiceRegistration();
 
             services.AddScoped<IEntityRepository<EmailContactItem, System.Guid>, EmailContactItemRepository>();
             services.AddScoped<IEntityRepository<PhoneContactItem, System.Guid>, PhoneContactItemRepository>();

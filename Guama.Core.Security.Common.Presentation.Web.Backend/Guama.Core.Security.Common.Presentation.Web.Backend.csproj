@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<AssemblyName>MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend</AssemblyName>
+	<RootNamespace>MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend</RootNamespace>
+	<PackageId>GuamaFramework.Core.Security.Common.Presentation.Web.Backend</PackageId>
+	<Product>GuamaFramework</Product>
+	<Authors>MOROPO DotNet DevTeam</Authors>
+	<Company>MOROPO S.U.R.L.</Company>
+	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
+	<Version>6.0.0.8</Version>
+	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guama.Core.Presentation.Web.Backend\Guama.Core.Presentation.Web.Backend.csproj" />
+    <ProjectReference Include="..\Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj" />
+    <ProjectReference Include="..\Guama.Core.Security.Common.Persistence.ORM.EF\Guama.Core.Security.Common.Persistence.ORM.EF.csproj" />
+    <ProjectReference Include="..\Guama.Core.Security.Common.Presentation.Web.Frontend\Guama.Core.Security.Common.Presentation.Web.Frontend.csproj" />
+    <ProjectReference Include="..\Guama.Core.Security.Common.Presentation\Guama.Core.Security.Common.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>

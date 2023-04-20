@@ -6,7 +6,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Common.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void PerformMiddlewareRegionWebCommonServiceRegistration(this IServiceCollection services)
+        public static void PerformLocationWebCommonServiceRegistration(this IServiceCollection services)
         {
             services.AddScoped<IEntityRepository<Persistence.Entities.Country, System.Guid>, CountryRepository>();
             services.AddScoped<IEntityRepository<Persistence.Entities.State, System.Guid>, StateRepository>();

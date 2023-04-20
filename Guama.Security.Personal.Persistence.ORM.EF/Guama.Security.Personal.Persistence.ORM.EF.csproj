@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<AssemblyName>MOROPO.Framework.Guama.Security.Personal.Persistence.ORM.EF</AssemblyName>
+	<RootNamespace>MOROPO.Framework.Guama.Security.Personal.Persistence.ORM.EF</RootNamespace>
+	<PackageId>GuamaFramework.Security.Personal.Persistence.ORM.EF</PackageId>
+	<Product>GuamaFramework</Product>
+	<Authors>MOROPO DotNet DevTeam</Authors>
+	<Company>MOROPO S.U.R.L.</Company>
+	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
+	<Version>6.0.0.8</Version>
+	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guama.Identity.Persistence.ORM.EF\Guama.Identity.Persistence.ORM.EF.csproj" />
+    <ProjectReference Include="..\Guama.Security.Personal.Persistence\Guama.Security.Personal.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

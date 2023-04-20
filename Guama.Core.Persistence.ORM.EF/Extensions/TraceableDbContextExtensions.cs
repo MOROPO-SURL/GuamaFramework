@@ -49,7 +49,7 @@ namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Extensions
 
                 if (target.Traces.Any())
                 {
-                    lastTrace = target.Traces.Last();
+                    lastTrace = target.Traces.OrderBy(entity => entity.Id).Last();
                 }
 
                 target.Traces.Add(trace);

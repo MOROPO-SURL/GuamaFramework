@@ -2,6 +2,6 @@
 {
     public interface IEntityTypeConfigurator
     {
-        void Configure(Microsoft.EntityFrameworkCore.ModelBuilder builder, string tableSchema = null, string shemaPrefix = null);
+        void Configure(Microsoft.EntityFrameworkCore.ModelBuilder builder, string tableSchema = null);
     }
 }

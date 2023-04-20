@@ -9,7 +9,7 @@
 	<Authors>MOROPO DotNet DevTeam</Authors>
 	<Company>MOROPO S.U.R.L.</Company>
 	<Copyright>© MOROPO 2023- Todos los derechos reservados.</Copyright>
-	<Version>6.0.0.1</Version>
+	<Version>6.0.0.8</Version>
 	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
   </PropertyGroup>
 
@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Guama.Core.Common\Guama.Core.Presentation.csproj" />
     <ProjectReference Include="..\Guama.Core.Persistence.Presentation\Guama.Core.Persistence.Presentation.csproj" />
     <ProjectReference Include="..\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj" />
   </ItemGroup>
