@@ -21,7 +21,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 
         public string GetImageAbsoluteFilePath(Persistence.Entities.Image image)
         {
-            return env.WebRootFileProvider.GetFileInfo(System.IO.Path.Combine(options.Value.MediaDirectoryName, options.Value.ImagesDirectoryName, string.Format("{0}.{1}", image.Id, image.ContentType.ContentTypeToExtension()))).PhysicalPath;
+            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ImagesDirectoryName, string.Format("{0}.{1}", image.Id, image.ContentType.ContentTypeToExtension()));
         }
 
         public byte[] GetImageFileContent(Persistence.Entities.Image image)

@@ -20,7 +20,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 
         public string GetThumbnailAbsoluteFilePath(Persistence.Entities.Thumbnail thumbnail)
         {
-            return env.WebRootFileProvider.GetFileInfo(System.IO.Path.Combine(options.Value.MediaDirectoryName, options.Value.ThumbnailsDirectoryName, string.Format("{0}.{1}", thumbnail.Id, thumbnail.ContentType.ContentTypeToExtension()))).PhysicalPath;
+            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ThumbnailsDirectoryName, string.Format("{0}.{1}", thumbnail.Id, thumbnail.ContentType.ContentTypeToExtension()));
         }
 
         public byte[] GetThumbnailFileContent(Persistence.Entities.Thumbnail thumbnail)
