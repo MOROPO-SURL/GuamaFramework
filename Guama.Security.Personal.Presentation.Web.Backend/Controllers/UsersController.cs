@@ -74,8 +74,11 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
                 var image = new Media.Persistence.Entities.Image { ContentType = modelInput.ImageFile.ContentType, Length = modelInput.ImageFile.Length, About = "User " + entity.Id };
 
+                imageRepository.Add(image, User.Identity.Name, false);
+
                 imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), modelInput.ImageFile.ContentType);
 
+                entity.Identity.ImageId = image.Id;
                 entity.Identity.Image = image;
             }
 
@@ -281,8 +284,11 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
                 var image = new Media.Persistence.Entities.Image { ContentType = modelInput.ImageFile.ContentType, Length = modelInput.ImageFile.Length, About = "User " + entity.Id };
 
+                imageRepository.Add(image, User.Identity.Name, false);
+
                 imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), modelInput.ImageFile.ContentType);
 
+                entity.Identity.ImageId = image.Id;
                 entity.Identity.Image = image;
             }
         }
