@@ -65,7 +65,7 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.C
 
         private void PopulateModelInputForAvailablePermissions(RoleInputViewModel modelInput, Role entity = null)
         {
-            var unfamiliedPermissions = permissionRepository.FindBy(item => item.Family == null).ToArray();
+            var unfamiliedPermissions = permissionRepository.FindBy(item => item.Family == null).OrderBy(item => item.Name).ToArray();
 
             modelInput.UngroupedSelectablePermissions = unfamiliedPermissions.Select(item => new Core.Presentation.Models.View.SelectionDescriptedItemInputViewModel<int>
             {
@@ -80,7 +80,7 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.C
             modelInput.GroupedSelectablePermissions = familiedPermissionGroups.Select(item => new System.Collections.Generic.KeyValuePair<string, Core.Presentation.Models.View.SelectionDescriptedItemInputViewModel<int>[]>
             (
                 item.Key,
-                item.Select(it3m => new Core.Presentation.Models.View.SelectionDescriptedItemInputViewModel<int>
+                item.OrderBy(item => item.Name).Select(it3m => new Core.Presentation.Models.View.SelectionDescriptedItemInputViewModel<int>
                 {
                     Id = it3m.Id,
                     Selected = entity != null && entity.PermissionBridges.Any(e => e.SternId.Equals(it3m.Id)),
