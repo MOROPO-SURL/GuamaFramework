@@ -9,5 +9,7 @@ namespace MOROPO.Framework.Guama.Media.Persistence.ORM.EF.Context
         DbSet<Entities.Image> Images { get; set; }
 
         DbSet<Entities.Video> Videos { get; set; }
+
+        DbSet<Entities.Document> Documents { get; set; }
     }
 }

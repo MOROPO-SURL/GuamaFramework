@@ -12,7 +12,8 @@
                 {
                     new Configurators.ImageEntityTypeConfigurator(),
                     new Configurators.ThumbnailEntityTypeConfigurator(),
-                    new Configurators.VideoEntityTypeConfigurator()
+                    new Configurators.VideoEntityTypeConfigurator(),
+                    new Configurators.DocumentEntityTypeConfigurator()
                 };
             }
         }

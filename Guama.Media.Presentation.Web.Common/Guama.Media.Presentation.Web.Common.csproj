@@ -9,9 +9,13 @@
 	<Authors>MOROPO DotNet DevTeam</Authors>
 	<Company>MOROPO S.U.R.L.</Company>
 	<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
-	<Version>6.0.0.12</Version>
+	<Version>6.0.0.13</Version>
 	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediaTypeMap.Core" Version="2.3.3" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj" />

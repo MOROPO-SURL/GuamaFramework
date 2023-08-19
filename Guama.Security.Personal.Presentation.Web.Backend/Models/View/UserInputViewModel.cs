@@ -1,5 +1,4 @@
 ﻿using MOROPO.Framework.Guama.Core.Presentation.Web.Common.ComponentModel.DataAnnotations;
-using MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -67,7 +66,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Mode
             Sex = entity.Identity.Sex;
             About = entity.Identity.About;
             ImageId = entity.Identity.ImageId;
-            ImageExtension = entity.Identity.Image?.ContentType.ContentTypeToExtension();
+            ImageExtension = entity.Identity.Image == null ? null : MimeTypes.MimeTypeMap.GetExtension(entity.Identity.Image.ContentType);
         }
 
         public void Mergue(Persistence.Entities.User entity)

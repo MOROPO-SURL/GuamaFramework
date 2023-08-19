@@ -1,5 +1,4 @@
 ﻿using MOROPO.Framework.Guama.Media.Presentation.Web.Common.Options;
-using MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions;
 
 namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 {
@@ -21,7 +20,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 
         public string GetImageAbsoluteFilePath(Persistence.Entities.Image image)
         {
-            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ImagesDirectoryName, string.Format("{0}.{1}", image.Id, image.ContentType.ContentTypeToExtension()));
+            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ImagesDirectoryName, string.Format("{0}.{1}", image.Id, MimeTypes.MimeTypeMap.GetExtension(image.ContentType)));
         }
 
         public byte[] GetImageFileContent(Persistence.Entities.Image image)

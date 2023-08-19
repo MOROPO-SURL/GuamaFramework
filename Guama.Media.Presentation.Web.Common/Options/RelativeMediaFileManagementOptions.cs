@@ -9,5 +9,7 @@
         public string ThumbnailsDirectoryName { get; set; }
 
         public string VideosDirectoryName { get; set; }
+
+        public string DocumentsDirectoryName { get; set; }
     }
 }

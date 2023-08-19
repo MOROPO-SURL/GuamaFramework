@@ -1,6 +1,4 @@
-﻿using MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions;
-
-namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
+﻿namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 {
     public class RelativePathThumbnailFileManager : Facade.IThumbnailFileManagerFacade
     {
@@ -20,7 +18,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 
         public string GetThumbnailAbsoluteFilePath(Persistence.Entities.Thumbnail thumbnail)
         {
-            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ThumbnailsDirectoryName, string.Format("{0}.{1}", thumbnail.Id, thumbnail.ContentType.ContentTypeToExtension()));
+            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.ThumbnailsDirectoryName, string.Format("{0}.{1}", thumbnail.Id, MimeTypes.MimeTypeMap.GetExtension(thumbnail.ContentType)));
         }
 
         public byte[] GetThumbnailFileContent(Persistence.Entities.Thumbnail thumbnail)

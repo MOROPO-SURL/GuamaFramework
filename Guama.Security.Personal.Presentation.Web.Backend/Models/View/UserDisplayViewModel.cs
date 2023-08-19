@@ -1,5 +1,4 @@
-﻿using MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions;
-using System.Linq;
+﻿using System.Linq;
 
 namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Models.View
 {
@@ -50,7 +49,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Mode
             Sex = entity.Identity.Sex;
             About = entity.Identity.About;
             ImageId = entity.Identity.ImageId;
-            ImageExtension = entity.Identity.Image?.ContentType.ContentTypeToExtension();
+            ImageExtension = entity.Identity.Image == null? null : MimeTypes.MimeTypeMap.GetExtension(entity.Identity.Image.ContentType);
             Roles = entity.RoleBridges.Select(bridge => bridge.Stern).ToList();
         }
     }

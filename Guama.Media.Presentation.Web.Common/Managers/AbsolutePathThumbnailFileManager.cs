@@ -16,9 +16,7 @@
 
         public string GetThumbnailAbsoluteFilePath(Persistence.Entities.Thumbnail thumbnail)
         {
-            var extension = thumbnail.ContentType.Split('/')[1].ToLowerInvariant();
-
-            return System.IO.Path.Combine(options.Value.ThumbnailsDirectoryPath, string.Format("{0}.{1}", thumbnail.Id, extension));
+            return System.IO.Path.Combine(options.Value.ThumbnailsDirectoryPath, string.Format("{0}.{1}", thumbnail.Id, MimeTypes.MimeTypeMap.GetExtension(thumbnail.ContentType)));
         }
 
         public byte[] GetThumbnailFileContent(Persistence.Entities.Thumbnail thumbnail)
