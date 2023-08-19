@@ -13,6 +13,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions
             services.AddScoped<IEntityRepository<Image, System.Guid>, ImageRepository>();
             services.AddScoped<IEntityRepository<Thumbnail, System.Guid>, ThumbnailRepository>();
             services.AddScoped<IEntityRepository<Video, System.Guid>, VideoRepository>();
+            services.AddScoped<IEntityRepository<Document, System.Guid>, DocumentRepository>();
 
             services.AddSingleton<Core.Persistence.ORM.EF.Providers.Facade.IDbSchemaConfigurationProviderFacade, Persistence.ORM.EF.Providers.DbSchemaConfigurationProvider>();
         }
@@ -27,6 +28,8 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions
         {
             services.AddSingleton<Managers.Facade.IImageFileManagerFacade, RelativePathImageFileManager>();
             services.AddSingleton<Managers.Facade.IThumbnailFileManagerFacade, RelativePathThumbnailFileManager>();
+            services.AddSingleton<Managers.Facade.IVideoFileManagerFacade, RelativePathVideoFileManager>();
+            services.AddSingleton<Managers.Facade.IDocumentFileManagerFacade, RelativePathDocumentFileManager>();
         }
     }
 }
