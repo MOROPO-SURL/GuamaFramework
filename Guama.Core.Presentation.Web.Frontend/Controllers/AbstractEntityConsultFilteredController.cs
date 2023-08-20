@@ -12,7 +12,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
         where TFilterModel : class, IEntityFilterModel<TEntity, TId>
     {
-        public AbstractEntityConsultFilteredController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityConsultController<TEntity, TId, TDisplayViewModel>> logger)
+        public AbstractEntityConsultFilteredController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityConsultFilteredController<TEntity, TId, TDisplayViewModel, TFilterModel>> logger)
             : base(repository, localizer, logger)
         {
         }
