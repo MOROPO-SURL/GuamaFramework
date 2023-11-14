@@ -2,7 +2,7 @@ dotnet pack .\Guama.Core.Persistence\Guama.Core.Persistence.csproj -c Release -o
 dotnet pack .\Guama.Core.Persistence.Presentation\Guama.Core.Persistence.Presentation.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
 dotnet pack .\Guama.Core.Persistence.ORM.EF\Guama.Core.Persistence.ORM.EF.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
 dotnet pack .\Guama.Core.Presentation\Guama.Core.Presentation.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
-dotnet pack .\Guama.Core.Presentation.API.Connect\Guama.Core.Presentation.API.Connect.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
+dotnet pack .\Guama.Core.API.Connect\Guama.Core.Presentation.API.Connect.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
 dotnet pack .\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
 dotnet pack .\Guama.Core.Presentation.Web.API\Guama.Core.Presentation.Web.API.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"
 dotnet pack .\Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj -c Release -o "W:\Assets\dotNet\Nugets\SSC"

@@ -15,7 +15,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers
         [HttpPost("filtered")]
         public virtual ActionResult<TDisplayModel[]> GetFiltered([FromBody] TFilterModel filterModel)
         {
-            return Ok(Repository.FindBy(filterModel.GetSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(Repository.FindBy(filterModel.GetSelector()).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpPost]

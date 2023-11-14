@@ -18,7 +18,14 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers
         [HttpGet]
         public virtual ActionResult<TDisplayModel[]> Get()
         {
-            return Ok(Repository.GetAll().Select(entity => EntityToDisplayModel(entity)).ToArray());
+            var selector = GetGlobalSelector();
+
+            if (selector != null)
+            {
+                return Ok(Repository.FindBy(selector).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
+            }
+
+            return Ok(Repository.GetAll().ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpGet]
