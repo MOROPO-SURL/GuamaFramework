@@ -84,7 +84,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{AFC4D2D7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Core.Presentation.Web.API", "Guama.Core.Presentation.Web.API\Guama.Core.Presentation.Web.API.csproj", "{7D12E132-F06A-4AAA-800C-1BC92514799F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Tool.Debug.Security.Personal", "Guama.Tool.Debug.Security.Personal\Guama.Tool.Debug.Security.Personal.csproj", "{4346FC8E-1D66-4F05-A688-78A84F2A60B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Tool.Debug.Security.Personal", "Guama.Tool.Debug.Security.Personal\Guama.Tool.Debug.Security.Personal.csproj", "{4346FC8E-1D66-4F05-A688-78A84F2A60B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Essential.Persistence", "Guama.Security.Essential.Persistence\Guama.Security.Essential.Persistence.csproj", "{DC819355-7EC2-48F4-8578-EC6711BF8D4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Essential.Persistence.ORM.EF", "Guama.Security.Essential.Persistence.ORM.EF\Guama.Security.Essential.Persistence.ORM.EF.csproj", "{D609FDD2-E76F-4563-AB11-82DED5350261}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Essential.Presentation.Web.Common", "Guama.Security.Essential.Presentation.Web.Common\Guama.Security.Essential.Presentation.Web.Common.csproj", "{827F0EFC-6710-431C-B16C-260309733646}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guama.Security.Essential.Presentation.Web.Backend", "Guama.Security.Essential.Presentation.Web.Backend\Guama.Security.Essential.Presentation.Web.Backend.csproj", "{B22E3FE0-6458-4869-8B5F-934F71F7DFF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guama.Tool.Debug.Security.Essential", "Guama.Tool.Debug.Security.Essential\Guama.Tool.Debug.Security.Essential.csproj", "{0B09A9D5-68C4-46DE-9878-1DBF55BC256C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -220,6 +230,26 @@ Global
 		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4346FC8E-1D66-4F05-A688-78A84F2A60B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC819355-7EC2-48F4-8578-EC6711BF8D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC819355-7EC2-48F4-8578-EC6711BF8D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC819355-7EC2-48F4-8578-EC6711BF8D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC819355-7EC2-48F4-8578-EC6711BF8D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D609FDD2-E76F-4563-AB11-82DED5350261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D609FDD2-E76F-4563-AB11-82DED5350261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D609FDD2-E76F-4563-AB11-82DED5350261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D609FDD2-E76F-4563-AB11-82DED5350261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827F0EFC-6710-431C-B16C-260309733646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827F0EFC-6710-431C-B16C-260309733646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827F0EFC-6710-431C-B16C-260309733646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827F0EFC-6710-431C-B16C-260309733646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22E3FE0-6458-4869-8B5F-934F71F7DFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22E3FE0-6458-4869-8B5F-934F71F7DFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22E3FE0-6458-4869-8B5F-934F71F7DFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22E3FE0-6458-4869-8B5F-934F71F7DFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B09A9D5-68C4-46DE-9878-1DBF55BC256C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B09A9D5-68C4-46DE-9878-1DBF55BC256C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B09A9D5-68C4-46DE-9878-1DBF55BC256C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B09A9D5-68C4-46DE-9878-1DBF55BC256C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -259,6 +289,11 @@ Global
 		{B85104FE-B163-466E-A1F0-106E5FC4A266} = {E286341A-F19B-468D-B8FC-8E924E81348C}
 		{7D12E132-F06A-4AAA-800C-1BC92514799F} = {A0EE24D2-C0B3-4FDE-BF67-67EF8688B897}
 		{4346FC8E-1D66-4F05-A688-78A84F2A60B0} = {AFC4D2D7-5452-4755-A3A6-F4B039871ECD}
+		{DC819355-7EC2-48F4-8578-EC6711BF8D4F} = {5B61223F-B7E5-40F2-B11D-5ECF7147A3E7}
+		{D609FDD2-E76F-4563-AB11-82DED5350261} = {5B61223F-B7E5-40F2-B11D-5ECF7147A3E7}
+		{827F0EFC-6710-431C-B16C-260309733646} = {5B61223F-B7E5-40F2-B11D-5ECF7147A3E7}
+		{B22E3FE0-6458-4869-8B5F-934F71F7DFF6} = {5B61223F-B7E5-40F2-B11D-5ECF7147A3E7}
+		{0B09A9D5-68C4-46DE-9878-1DBF55BC256C} = {AFC4D2D7-5452-4755-A3A6-F4B039871ECD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F001066-21FC-44E9-97D0-8DCABFC767BD}

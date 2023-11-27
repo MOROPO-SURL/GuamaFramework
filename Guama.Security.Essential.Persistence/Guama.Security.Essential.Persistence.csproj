@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>MOROPO.Framework.Guama.Security.Essential.Persistence</AssemblyName>
+		<RootNamespace>MOROPO.Framework.Guama.Security.Essential.Persistence</RootNamespace>
+		<PackageId>GuamaFramework.Security.Essential.Persistence</PackageId>
+		<Product>GuamaFramework</Product>
+		<Authors>MOROPO DotNet DevTeam</Authors>
+		<Company>MOROPO S.U.R.L.</Company>
+		<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.15</Version>
+		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Guama.Core.Security.Common.Persistence\Guama.Core.Security.Common.Persistence.csproj" />
+	</ItemGroup>
+
+</Project>

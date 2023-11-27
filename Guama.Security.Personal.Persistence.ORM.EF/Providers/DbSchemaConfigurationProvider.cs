@@ -2,7 +2,7 @@
 {
     public class DbSchemaConfigurationProvider : Core.Persistence.ORM.EF.Providers.Facade.IDbSchemaConfigurationProviderFacade
     {
-        public string DefaultPersistenceSchema => string.Format("{0}_security_identity", Core.Persistence.Constants.Schema.FRAMEWORK_SCHEMA_PREFIX);
+        public string DefaultPersistenceSchema => string.Format("{0}_security_personal", Core.Persistence.Constants.Schema.FRAMEWORK_SCHEMA_PREFIX);
 
         public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator> EntityTypeConfigurators
         {
