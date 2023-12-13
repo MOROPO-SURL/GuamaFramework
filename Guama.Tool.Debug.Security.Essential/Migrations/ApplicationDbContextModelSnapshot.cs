@@ -188,7 +188,7 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
                     b.HasKey("Id")
                         .HasName("pk_users");
 
-                    b.ToTable("users");
+                    b.ToTable("users", "guamaframework_security_essential");
                 });
 
             modelBuilder.Entity("MOROPO.Framework.Guama.Security.Essential.Persistence.Entities.UserRoleBridge", b =>

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialSchemaMigration : Migration
+    public partial class It1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,6 +71,7 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
 
             migrationBuilder.CreateTable(
                 name: "users",
+                schema: "guamaframework_security_essential",
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
@@ -137,6 +138,7 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
                     table.ForeignKey(
                         name: "fk_userrolebridges_users_prowid",
                         column: x => x.prowid,
+                        principalSchema: "guamaframework_security_essential",
                         principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -178,7 +180,8 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
                 schema: "guamaframework_core_security_common");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "users",
+                schema: "guamaframework_security_essential");
         }
     }
 }

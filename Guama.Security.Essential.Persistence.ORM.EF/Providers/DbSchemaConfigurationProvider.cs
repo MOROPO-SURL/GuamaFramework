@@ -10,6 +10,7 @@
             {
                 return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator>
                 {
+                    new Configurators.UserEntityTypeConfigurator(),
                     new Configurators.UserRoleBridgeEntityTypeConfigurator()
                 };
             }

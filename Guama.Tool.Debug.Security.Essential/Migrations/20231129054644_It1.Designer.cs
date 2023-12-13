@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231127194843_InitialSchemaMigration")]
-    partial class InitialSchemaMigration
+    [Migration("20231129054644_It1")]
+    partial class It1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,7 +191,7 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Essential.Migrations
                     b.HasKey("Id")
                         .HasName("pk_users");
 
-                    b.ToTable("users");
+                    b.ToTable("users", "guamaframework_security_essential");
                 });
 
             modelBuilder.Entity("MOROPO.Framework.Guama.Security.Essential.Persistence.Entities.UserRoleBridge", b =>
