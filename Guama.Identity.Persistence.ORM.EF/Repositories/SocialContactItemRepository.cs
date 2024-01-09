@@ -1,6 +1,8 @@
-﻿namespace MOROPO.Framework.Guama.Identity.Persistence.ORM.EF.Repositories
+﻿using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
+
+namespace MOROPO.Framework.Guama.Identity.Persistence.ORM.EF.Repositories
 {
-    public class SocialContactItemRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.SocialContactItem, System.Guid>
+    public class SocialContactItemRepository : AbstractEntityRepository<Entities.SocialContactItem, System.Guid>
     {
         public SocialContactItemRepository(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
         {

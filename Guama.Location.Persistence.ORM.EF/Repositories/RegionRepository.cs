@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Repositories
 {
-    public class RegionRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.Region, System.Guid>
+    public class RegionRepository : AbstractEntityRepository<Entities.Region, System.Guid>
     {
         public RegionRepository(DbContext dbContext) : base(dbContext)
         {

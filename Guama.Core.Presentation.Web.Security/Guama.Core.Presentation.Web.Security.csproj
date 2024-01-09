@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<AssemblyName>MOROPO.Framework.Guama.Core.Presentation.Web.Security</AssemblyName>
-	<RootNamespace>MOROPO.Framework.Guama.Core.Presentation.Web.Security</RootNamespace>
-	<PackageId>GuamaFramework.Core.Presentation.Web.Security</PackageId>
-	<Product>GuamaFramework</Product>
-	<Authors>MOROPO DotNet DevTeam</Authors>
-	<Company>MOROPO S.U.R.L.</Company>
-	<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
-	<Version>6.0.0.15</Version>
-	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>MOROPO.Framework.Guama.Core.Presentation.Web.Security</AssemblyName>
+		<RootNamespace>MOROPO.Framework.Guama.Core.Presentation.Web.Security</RootNamespace>
+		<PackageId>GuamaFramework.Core.Presentation.Web.Security</PackageId>
+		<Product>GuamaFramework</Product>
+		<Authors>MOROPO DotNet DevTeam</Authors>
+		<Company>MOROPO S.U.R.L.</Company>
+		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.20</Version>
+		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Guama.Core.Presentation.Web.Common\Guama.Core.Presentation.Web.Common.csproj" />
+	</ItemGroup>
 
 </Project>

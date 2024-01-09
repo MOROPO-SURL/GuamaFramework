@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Repositories
 {
-    public class StateRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.State, System.Guid>
+    public class StateRepository : AbstractEntityRepository<Entities.State, System.Guid>
     {
         public StateRepository(DbContext dbContext) : base(dbContext)
         {

@@ -31,6 +31,7 @@ namespace MOROPO.Framework.Guama.Tool.Debug.Security.Personal.Persistence.EF
         public DbSet<Thumbnail> Thumbnails { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Video> Videos { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<State> States { get; set; }

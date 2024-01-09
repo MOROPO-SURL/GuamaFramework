@@ -8,8 +8,8 @@
 		<Product>GuamaFramework</Product>
 		<Authors>MOROPO DotNet DevTeam</Authors>
 		<Company>MOROPO S.U.R.L.</Company>
-		<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
-		<Version>6.0.0.16</Version>
+		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.20</Version>
 		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
 	</PropertyGroup>
 	

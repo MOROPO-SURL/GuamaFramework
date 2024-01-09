@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Security.Personal.Persistence.ORM.EF.Repositories
 {
-    public class UserRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.User, string>
+    public class UserRepository : AbstractEntityRepository<Entities.User, string>
     {
         public UserRepository(DbContext dbContext) : base(dbContext)
         {

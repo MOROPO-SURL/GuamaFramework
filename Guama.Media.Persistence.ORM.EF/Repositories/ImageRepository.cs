@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Media.Persistence.ORM.EF.Repositories
 {
-    public class ImageRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.Image, System.Guid>
+    public class ImageRepository : AbstractEntityRepository<Entities.Image, System.Guid>
     {
         public ImageRepository(DbContext dbContext) : base(dbContext)
         {

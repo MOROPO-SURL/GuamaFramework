@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-	<AssemblyName>MOROPO.Framework.Guama.Core.Security.Presentation</AssemblyName>
-	<RootNamespace>MOROPO.Framework.Guama.Core.Security.Presentation</RootNamespace>
-	<PackageId>GuamaFramework.Core.Security.Presentation</PackageId>
-	<Product>GuamaFramework</Product>
-	<Authors>MOROPO DotNet DevTeam</Authors>
-	<Company>MOROPO S.U.R.L.</Company>
-	<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
-	<Version>6.0.0.15</Version>
-	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>MOROPO.Framework.Guama.Core.Security.Presentation</AssemblyName>
+		<RootNamespace>MOROPO.Framework.Guama.Core.Security.Presentation</RootNamespace>
+		<PackageId>GuamaFramework.Core.Security.Presentation</PackageId>
+		<Product>GuamaFramework</Product>
+		<Authors>MOROPO DotNet DevTeam</Authors>
+		<Company>MOROPO S.U.R.L.</Company>
+		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.20</Version>
+		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+	</PropertyGroup>
 
 </Project>

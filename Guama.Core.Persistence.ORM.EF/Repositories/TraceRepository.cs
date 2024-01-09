@@ -1,4 +1,5 @@
 ﻿using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Entities;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories
 {

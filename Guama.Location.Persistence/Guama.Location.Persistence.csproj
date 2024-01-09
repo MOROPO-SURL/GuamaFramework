@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-	<AssemblyName>MOROPO.Framework.Guama.Location.Persistence</AssemblyName>
-	<RootNamespace>MOROPO.Framework.Guama.Location.Persistence</RootNamespace>
-	<PackageId>GuamaFramework.Location.Persistence</PackageId>
-	<Product>GuamaFramework</Product>
-	<Authors>MOROPO DotNet DevTeam</Authors>
-	<Company>MOROPO S.U.R.L.</Company>
-	<Copyright>© MOROPO 2023 - Todos los derechos reservados.</Copyright>
-	<Version>6.0.0.15</Version>
-	<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>MOROPO.Framework.Guama.Location.Persistence</AssemblyName>
+		<RootNamespace>MOROPO.Framework.Guama.Location.Persistence</RootNamespace>
+		<PackageId>GuamaFramework.Location.Persistence</PackageId>
+		<Product>GuamaFramework</Product>
+		<Authors>MOROPO DotNet DevTeam</Authors>
+		<Company>MOROPO S.U.R.L.</Company>
+		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.20</Version>
+		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Guama.Core.Persistence\Guama.Core.Persistence.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Guama.Core.Persistence\Guama.Core.Persistence.csproj" />
+	</ItemGroup>
 
 </Project>

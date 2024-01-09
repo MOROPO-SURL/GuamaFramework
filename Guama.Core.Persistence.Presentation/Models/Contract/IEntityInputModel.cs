@@ -5,6 +5,5 @@
         void Mergue(TEntity entity);
 
         TEntity Export();
-
     }
 }

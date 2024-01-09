@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Core.Security.Common.Persistence.ORM.EF.Repositories
 {
-    public class RoleRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.Role, System.Guid>
+    public class RoleRepository : AbstractEntityRepository<Entities.Role, System.Guid>
     {
         public RoleRepository(DbContext dbContext) : base(dbContext)
         {

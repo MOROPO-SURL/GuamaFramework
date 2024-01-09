@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Identity.Persistence.ORM.EF.Repositories
 {
-    public class OrganizationIdentityRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.OrganizationIdentity, System.Guid>
+    public class OrganizationIdentityRepository : AbstractEntityRepository<Entities.OrganizationIdentity, System.Guid>
     {
         public OrganizationIdentityRepository(DbContext dbContext) : base(dbContext)
         {

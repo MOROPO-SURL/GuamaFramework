@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract;
 
 namespace MOROPO.Framework.Guama.Media.Persistence.ORM.EF.Repositories
 {
-    public class DocumentRepository : Core.Persistence.ORM.EF.Repositories.AbstractEntityRepository<Entities.Document, System.Guid>
+    public class DocumentRepository : AbstractEntityRepository<Entities.Document, System.Guid>
     {
         public DocumentRepository(DbContext dbContext) : base(dbContext)
         {
