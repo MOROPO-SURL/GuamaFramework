@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Managers.Facade;
+using System.Linq;
 
 namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Frontend.Extensions
 {
     public static class ClaimPrincipalExtensions
     {
-        public static bool IsAuthorized(this System.Security.Claims.ClaimsPrincipal target, string permission)
+        public static bool IsAuthorized(this System.Security.Claims.ClaimsPrincipal target, string permission, HttpContext httpContext)
         {
             if (target.HasClaim(claim => claim.Type.Equals(Core.Presentation.Web.Security.Constants.ClaimTypes.AccountWithFullAccess))) return true;
 
@@ -12,7 +15,7 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Frontend.
 
             foreach (var roleId in roleIds)
             {
-                var permissions = Providers.RoleMemoryProvider.Instance.Roles.First(item => item.Id.ToString() == roleId).PermissionBridges.Select(item => item.Stern.Code).ToArray();
+                var permissions = httpContext.RequestServices.GetService<IRoleMemoryManagerFacade>().FindRoleById(System.Guid.Parse(roleId)).PermissionBridges.Select(item => item.Stern.Code).ToArray();
 
                 foreach (var item in permissions)
                 {

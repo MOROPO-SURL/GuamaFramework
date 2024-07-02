@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MOROPO.Framework.Guama.Core.Persistence.Repositories;
 using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Attributes;
+using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Managers.Facade;
 using MOROPO.Framework.Guama.Core.Security.Common.Persistence.Entities;
 using MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.Models.View;
 using MOROPO.Framework.Guama.Core.Security.Presentation.Constants;
@@ -14,11 +15,13 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.C
     public class RolesController : Core.Presentation.Web.Backend.Controllers.AbstractEntityManagementController<Role, System.Guid, RoleInputViewModel, RoleDisplayViewModel>
     {
         private readonly IEntityRepository<Permission, int> permissionRepository;
+        private readonly IRoleMemoryManagerFacade roleMemoryManager;
 
-        public RolesController(IEntityRepository<Permission, int> permissionRepository, IEntityRepository<Role, System.Guid> repository, Microsoft.Extensions.Localization.IStringLocalizer<RolesController> localizer, ILogger<RolesController> logger)
+        public RolesController(IRoleMemoryManagerFacade roleMemoryManager, IEntityRepository<Permission, int> permissionRepository, IEntityRepository<Role, System.Guid> repository, Microsoft.Extensions.Localization.IStringLocalizer<RolesController> localizer, ILogger<RolesController> logger)
             : base(repository, localizer, logger)
         {
             this.permissionRepository = permissionRepository;
+            this.roleMemoryManager = roleMemoryManager;
         }
 
         [RequirePermissions(Permissions.RoleViewer)]
@@ -120,24 +123,22 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.C
         {
             base.PostCreate(entity, modelInput);
 
-            Frontend.Providers.RoleMemoryProvider.Instance.Roles.Add(entity);
+            roleMemoryManager.RememberRole(Repository.Get(entity.Id));
         }
 
         protected override void PostEdit(Role entity, RoleInputViewModel modelInput)
         {
             base.PostEdit(entity, modelInput);
 
-            var old = Frontend.Providers.RoleMemoryProvider.Instance.Roles.First(item => item.Id == entity.Id);
-
-            Frontend.Providers.RoleMemoryProvider.Instance.Roles.Remove(old);
-            Frontend.Providers.RoleMemoryProvider.Instance.Roles.Add(entity);
+            roleMemoryManager.ForguetRoleById(entity.Id);
+            roleMemoryManager.RememberRole(Repository.Get(entity.Id));
         }
 
         protected override void PostDelete(Role entity)
         {
             base.PostDelete(entity);
 
-            Frontend.Providers.RoleMemoryProvider.Instance.Roles.Remove(entity);
+            roleMemoryManager.ForguetRoleById(entity.Id);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Constants;
+using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Managers.Facade;
 using MOROPO.Framework.Guama.Core.Presentation.Web.Security.Requirements;
 using System.Threading.Tasks;
 
@@ -27,13 +28,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Security.Attributes
             {
                 var authorized = context.HttpContext.User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString()));
 
-                var roleProvider = context.HttpContext.RequestServices.GetService<Providers.Facade.IRoleIdProviderFacade>();
+                var roleMemoryManager = context.HttpContext.RequestServices.GetService<IRoleMemoryManagerFacade>();
 
                 if (!authorized)
                 {
                     foreach (var permission in requiredRolePermissions.Permissions)
                     {
-                        var roles = roleProvider.GetByPermission(permission);
+                        var roles = roleMemoryManager.GetRoleIdsByPermission(permission);
 
                         foreach (var role in roles)
                         {

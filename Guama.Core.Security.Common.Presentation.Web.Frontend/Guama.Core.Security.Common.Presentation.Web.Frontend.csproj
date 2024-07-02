@@ -9,7 +9,7 @@
 		<Authors>MOROPO DotNet DevTeam</Authors>
 		<Company>MOROPO S.U.R.L.</Company>
 		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
-		<Version>6.0.0.20</Version>
+		<Version>6.0.0.23</Version>
 		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
 	</PropertyGroup>
 
@@ -20,7 +20,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Guama.Core.Presentation.Web.Frontend\Guama.Core.Presentation.Web.Frontend.csproj" />
 		<ProjectReference Include="..\Guama.Core.Presentation.Web.Security\Guama.Core.Presentation.Web.Security.csproj" />
-		<ProjectReference Include="..\Guama.Core.Security.Common.Persistence\Guama.Core.Security.Common.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>
