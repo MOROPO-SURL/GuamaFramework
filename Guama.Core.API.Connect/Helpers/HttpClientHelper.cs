@@ -32,6 +32,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.API.Connect.Helpers
             client = new HttpClient(handler) { BaseAddress = new System.Uri(baseUrl), Timeout = timeout == default ? System.TimeSpan.FromSeconds(30) : timeout };
         }
 
+        public System.Uri ClientBaseAddress => client.BaseAddress;
+
         public async Task DeleteAsync(string url)
         {
             EnsureRequiredHeadersInclution();
