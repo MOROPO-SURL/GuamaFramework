@@ -11,7 +11,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
 {
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("location")]
-    public class RegionsController : Core.Presentation.Web.Backend.Controllers.AbstractEntityManagementFilteredController<Region, System.Guid, RegionInputViewModel, RegionDisplayViewModel, RegionFilterModel>
+    public class RegionsController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEntityManagementFilteredController<Region, System.Guid, RegionInputViewModel, RegionDisplayViewModel, RegionFilterModel>
     {
         private readonly IEntityRepository<Country, System.Guid> countryRepository;
 

@@ -18,4 +18,10 @@
 		<ProjectReference Include="..\Guama.Core.Presentation\Guama.Core.Presentation.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Clients\Contract\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Clients\Contract\" />
+	</ItemGroup>
 </Project>

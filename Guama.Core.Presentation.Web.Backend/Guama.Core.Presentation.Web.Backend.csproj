@@ -17,4 +17,10 @@
 		<ProjectReference Include="..\Guama.Core.Presentation.Web.Frontend\Guama.Core.Presentation.Web.Frontend.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Controllers\Contract\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Controllers\Contract\" />
+	</ItemGroup>
 </Project>

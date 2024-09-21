@@ -12,7 +12,7 @@ namespace MOROPO.Framework.Guama.Core.Security.Common.Presentation.Web.Backend.C
 {
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("security")]
-    public class RolesController : Core.Presentation.Web.Backend.Controllers.AbstractEntityManagementController<Role, System.Guid, RoleInputViewModel, RoleDisplayViewModel>
+    public class RolesController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEntityManagementController<Role, System.Guid, RoleInputViewModel, RoleDisplayViewModel>
     {
         private readonly IEntityRepository<Permission, int> permissionRepository;
         private readonly IRoleMemoryManagerFacade roleMemoryManager;

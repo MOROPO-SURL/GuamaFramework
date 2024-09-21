@@ -10,7 +10,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
 {
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("location")]
-    public class CountriesController : Core.Presentation.Web.Backend.Controllers.AbstractEntityManagementFilteredController<Country, System.Guid, CountryInputViewModel, CountryDisplayViewModel, CountryFilterModel>
+    public class CountriesController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEntityManagementFilteredController<Country, System.Guid, CountryInputViewModel, CountryDisplayViewModel, CountryFilterModel>
     {
         public CountriesController(IEntityRepository<Country, System.Guid> repository, Microsoft.Extensions.Localization.IStringLocalizer<CountriesController> localizer, Microsoft.Extensions.Logging.ILogger<CountriesController> logger) : base(repository, localizer, logger)
         {

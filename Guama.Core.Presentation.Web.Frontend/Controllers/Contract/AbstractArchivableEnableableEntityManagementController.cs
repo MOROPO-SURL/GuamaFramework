@@ -1,0 +1,86 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MOROPO.Framework.Guama.Core.Persistence.Presentation.Models.Contract;
+using MOROPO.Framework.Guama.Core.Persistence.Repositories;
+
+namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Contract
+{
+    public class AbstractArchivableEnableableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel> : AbstractArchivableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>
+        where TEntity : class, Persistence.Entities.Contract.IArchivableEntity<TId>, Persistence.Entities.Contract.IEnableableEntity<TId>
+        where TInputViewModel : class, IEntityInputModel<TEntity, TId>, new()
+        where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
+    {
+        public AbstractArchivableEnableableEntityManagementController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEnableableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger) : base(repository, localizer, logger)
+        {
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [ValidateAntiForgeryToken]
+        public virtual IActionResult Enable(TId key)
+        {
+            try
+            {
+                var entity = Repository.Get(key);
+
+                entity.Enabled = true;
+
+                Repository.Update(entity, User.Identity.Name);
+
+                SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetEnableSuccessMessage());
+            }
+            catch (Common.Exceptions.NoContinuableActionException e)
+            {
+                SetDefaultNotification(e.Type, e.Title, e.Message, null);
+            }
+            catch (System.Exception e)
+            {
+                logger.LogError(e.InnerException, e.Message);
+
+                SetDefaultNotification(Presentation.Models.View.NotificationType.Danger, GetNotFoundMessage());
+            }
+
+            return GetDefaultActionResult();
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [ValidateAntiForgeryToken]
+        public virtual IActionResult Disable(TId key)
+        {
+            try
+            {
+                var entity = Repository.Get(key);
+
+                entity.Enabled = false;
+
+                Repository.Update(entity, User.Identity.Name);
+
+                SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetDisableSuccessMessage());
+            }
+            catch (Common.Exceptions.NoContinuableActionException e)
+            {
+                SetDefaultNotification(e.Type, e.Title, e.Message, null);
+            }
+            catch (System.Exception e)
+            {
+                logger.LogError(e.InnerException, e.Message);
+
+                SetDefaultNotification(Presentation.Models.View.NotificationType.Danger, GetNotFoundMessage());
+            }
+
+            return GetDefaultActionResult();
+        }
+
+        protected virtual string GetEnableSuccessMessage()
+        {
+            return "EnableSuccessMessage";
+        }
+
+        protected virtual string GetDisableSuccessMessage()
+        {
+            return "DisableSuccessMessage";
+        }
+    }
+}
+

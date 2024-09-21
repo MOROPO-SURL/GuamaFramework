@@ -17,7 +17,7 @@ namespace MOROPO.Framework.Guama.Security.Essential.Presentation.Web.Backend.Con
 {
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("security")]
-    public class UsersController : Core.Presentation.Web.Backend.Controllers.AbstractHabilitableEntityManagementFilteredController<User, string, UserInputViewModel, UserDisplayViewModel, UsersFilterModel>
+    public class UsersController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEnableableEntityManagementFilteredController<User, string, UserInputViewModel, UserDisplayViewModel, UsersFilterModel>
     {
         private readonly IEntityRepository<Role, System.Guid> roleRepository;
 

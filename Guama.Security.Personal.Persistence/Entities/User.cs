@@ -2,7 +2,7 @@
 
 namespace MOROPO.Framework.Guama.Security.Personal.Persistence.Entities
 {
-    public class User : Core.Persistence.Entities.Contract.IHabilitableEntity<string>, Core.Persistence.Entities.Contract.IPersistenceSignable
+    public class User : Core.Persistence.Entities.Contract.IEnableableEntity<string>, Core.Persistence.Entities.Contract.IPersistenceSignable
     {
         [Key]
         public string Id { get; set; }
