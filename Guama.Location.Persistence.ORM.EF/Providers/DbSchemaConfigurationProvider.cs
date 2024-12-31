@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators.Contract;
 using MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Configurators;
 
 namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Providers

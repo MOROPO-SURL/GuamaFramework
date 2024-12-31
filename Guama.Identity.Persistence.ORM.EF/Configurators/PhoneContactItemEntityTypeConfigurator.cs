@@ -1,6 +1,6 @@
 ﻿namespace MOROPO.Framework.Guama.Identity.Persistence.ORM.EF.Configurators
 {
-    public class PhoneContactItemEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.AbstractEntityTypeConfigurator<Entities.PhoneContactItem>
+    public class PhoneContactItemEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.Contract.AbstractEntityTypeConfigurator<Entities.PhoneContactItem>
     {
     }
 }

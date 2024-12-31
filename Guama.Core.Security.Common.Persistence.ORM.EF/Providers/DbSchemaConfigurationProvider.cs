@@ -4,11 +4,11 @@
     {
         public string DefaultPersistenceSchema => "guamaframework_core_security_common";
 
-        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator> EntityTypeConfigurators
+        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator> EntityTypeConfigurators
         {
             get
             {
-                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator>
+                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator>
                 {
                     new Configurators.PermissionEntityTypeConfigurator(),
                     new Configurators.RoleEntityTypeConfigurator(),

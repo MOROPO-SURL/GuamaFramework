@@ -6,11 +6,11 @@ namespace MOROPO.Framework.Guama.Identity.Persistence.ORM.EF.Providers
     {
         public virtual string DefaultPersistenceSchema => string.Format("{0}_identity", Core.Persistence.Constants.Schema.FRAMEWORK_SCHEMA_PREFIX);
 
-        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator> EntityTypeConfigurators
+        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator> EntityTypeConfigurators
         {
             get
             {
-                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator>
+                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator>
                 {
                     new EmailContactItemEntityTypeConfigurator(),
                     new PhoneContactItemEntityTypeConfigurator(),

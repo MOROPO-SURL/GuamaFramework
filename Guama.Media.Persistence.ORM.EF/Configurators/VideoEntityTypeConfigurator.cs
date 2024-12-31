@@ -1,6 +1,6 @@
 ﻿namespace MOROPO.Framework.Guama.Media.Persistence.ORM.EF.Configurators
 {
-    public class VideoEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.AbstractEntityTypeConfigurator<Entities.Video>
+    public class VideoEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.Contract.AbstractEntityTypeConfigurator<Entities.Video>
     {
         protected override void ApplayRules(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.Video> entityTypeBuilder)
         {

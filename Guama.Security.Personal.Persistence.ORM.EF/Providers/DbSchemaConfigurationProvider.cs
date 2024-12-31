@@ -4,11 +4,11 @@
     {
         public string DefaultPersistenceSchema => string.Format("{0}_security_personal", Core.Persistence.Constants.Schema.FRAMEWORK_SCHEMA_PREFIX);
 
-        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator> EntityTypeConfigurators
+        public System.Collections.Generic.ICollection<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator> EntityTypeConfigurators
         {
             get
             {
-                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.IEntityTypeConfigurator>
+                return new System.Collections.Generic.List<Core.Persistence.ORM.EF.Configurators.Contract.IEntityTypeConfigurator>
                 {
                     new Configurators.UserEntityTypeConfigurator(),
                     new Configurators.UserRoleBridgeEntityTypeConfigurator()

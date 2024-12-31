@@ -1,6 +1,6 @@
 ﻿namespace MOROPO.Framework.Guama.Media.Persistence.ORM.EF.Configurators
 {
-    public class DocumentEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.AbstractEntityTypeConfigurator<Entities.Document>
+    public class DocumentEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.Contract.AbstractEntityTypeConfigurator<Entities.Document>
     {
         protected override void ApplayRules(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.Document> entityTypeBuilder)
         {

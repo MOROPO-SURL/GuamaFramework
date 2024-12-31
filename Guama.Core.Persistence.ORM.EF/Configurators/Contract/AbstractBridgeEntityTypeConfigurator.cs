@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators
+namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators.Contract
 {
     public abstract class AbstractBridgeEntityTypeConfigurator<TBridgeEntity, TProwEntity, TProwId, TSternEntity, TSternId> : AbstractEntityTypeConfigurator<TBridgeEntity>
         where TBridgeEntity : class, Persistence.Entities.Contract.IBridge<TProwEntity, TProwId, TSternEntity, TSternId>

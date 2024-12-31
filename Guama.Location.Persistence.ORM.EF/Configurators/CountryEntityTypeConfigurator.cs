@@ -1,6 +1,6 @@
 ﻿namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Configurators
 {
-    public class CountryEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.AbstractEntityTypeConfigurator<Entities.Country>
+    public class CountryEntityTypeConfigurator : Core.Persistence.ORM.EF.Configurators.Contract.AbstractEntityTypeConfigurator<Entities.Country>
     {
         protected override void ApplayRules(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.Country> entityTypeBuilder)
         {

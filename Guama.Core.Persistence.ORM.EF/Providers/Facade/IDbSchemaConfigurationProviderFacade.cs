@@ -4,6 +4,6 @@
     {
         string DefaultPersistenceSchema { get; }
 
-        System.Collections.Generic.ICollection<Configurators.IEntityTypeConfigurator> EntityTypeConfigurators { get; }
+        System.Collections.Generic.ICollection<Configurators.Contract.IEntityTypeConfigurator> EntityTypeConfigurators { get; }
     }
 }

@@ -9,7 +9,7 @@
 		<Authors>MOROPO DotNet DevTeam</Authors>
 		<Company>MOROPO S.U.R.L.</Company>
 		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
-		<Version>6.0.0.23</Version>
+		<Version>6.0.0.31</Version>
 		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	</PropertyGroup>

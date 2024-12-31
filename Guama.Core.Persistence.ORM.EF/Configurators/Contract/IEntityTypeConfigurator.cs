@@ -1,4 +1,4 @@
-﻿namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators
+﻿namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Configurators.Contract
 {
     public interface IEntityTypeConfigurator
     {
