@@ -21,7 +21,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                return BuildActionResultWithPaginationViewModel(sheet, limit, Repository.GetPagingOrderSelector(), GetFilterModel());
+                return BuildActionResultWithPaginationViewModel(sheet, limit, GetFilterModel());
             }
             catch (Common.Exceptions.NoContinuableActionException e)
             {

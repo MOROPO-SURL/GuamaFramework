@@ -15,6 +15,16 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             Repository = repository;
         }
 
+        protected virtual System.Func<TEntity, object> GetOrderSelector()
+        {
+            return e => e.Id;
+        }
+
+        protected virtual bool IsOrderDescending()
+        {
+            return false;
+        }
+
         [HttpGet]
         public virtual ActionResult<TDisplayModel[]> Get()
         {
@@ -22,10 +32,17 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public Microsoft.AspNetCore.Mvc.ActionResult<long> Count()
+        {
+            return Ok(Repository.Count());
         }
 
         [HttpGet]
@@ -33,7 +50,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [Route("page/{sheet}/limit/{limit}")]
         public virtual ActionResult<Models.PaginationModel<TDisplayModel>> GetPaginate(int sheet = 1, int limit = 25)
         {
-            return BuildPaginationModelActionResult(sheet, limit, Repository.GetPagingOrderSelector(), null);
+            return BuildPaginationModelActionResult(sheet, limit, null);
         }
 
         [HttpGet("{key}")]
@@ -62,7 +79,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
         protected virtual System.Linq.Expressions.Expression<System.Func<TEntity, bool>> GetGlobalSelector() { return null; }
 
-        protected ActionResult<Models.PaginationModel<TDisplayModel>> BuildPaginationModelActionResult<TOrderingKey>(int page, int limit, System.Func<TEntity, TOrderingKey> ordering, Persistence.Presentation.Models.Filter.Contract.IEntityFilterModel<TEntity, TId> filterModel)
+        protected ActionResult<Models.PaginationModel<TDisplayModel>> BuildPaginationModelActionResult(int page, int limit, Persistence.Presentation.Models.Filter.Contract.IEntityFilterModel<TEntity, TId> filterModel)
         {
             IQueryable<TEntity> selection = null;
 
@@ -119,13 +136,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
                 var entities = new System.Collections.Generic.List<TEntity>();
 
-                if (!Repository.IsPagingOrderDescending())
+                if (!IsOrderDescending())
                 {
-                    entities = selection.OrderBy(ordering).Skip((page - 1) * limit).Take(limit).ToList();
+                    entities = selection.Skip((page - 1) * limit).Take(limit).OrderBy(GetOrderSelector()).ToList();
                 }
                 else
                 {
-                    entities = selection.OrderByDescending(ordering).Skip((page - 1) * limit).Take(limit).ToList();
+                    entities = selection.Skip((page - 1) * limit).Take(limit).OrderByDescending(GetOrderSelector()).ToList();
                 }
 
                 var models = entities.Select(entity => EntityToDisplayModel(entity)).ToList();

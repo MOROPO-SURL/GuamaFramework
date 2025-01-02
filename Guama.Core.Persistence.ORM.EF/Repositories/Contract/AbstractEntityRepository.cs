@@ -68,16 +68,7 @@ namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract
 
         public List<TEntity> GetPage(int page, int limit)
         {
-            var skip = page * limit;
-
-            if (!IsPagingOrderDescending())
-            {
-                return GetQueryableDbSet().OrderBy(GetPagingOrderSelector()).Skip(skip).Take(limit).ToList();
-            }
-            else
-            {
-                return GetQueryableDbSet().OrderByDescending(GetPagingOrderSelector()).Skip(skip).Take(limit).ToList();
-            }
+            return GetQueryableDbSet().Skip(page * limit).Take(limit).ToList();
         }
 
         public virtual TEntity Add(TEntity entity, string author, bool commit = true)
@@ -160,16 +151,6 @@ namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract
         protected virtual Func<TEntity, bool> GetKeySelector(TId key)
         {
             return e => e.Id.Equals(key);
-        }
-
-        public virtual Func<TEntity, object> GetPagingOrderSelector()
-        {
-            return e => e.Id;
-        }
-
-        public virtual bool IsPagingOrderDescending()
-        {
-            return false;
         }
     }
 }

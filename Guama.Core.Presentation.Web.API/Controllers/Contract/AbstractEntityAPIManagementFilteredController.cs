@@ -26,7 +26,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [Route("filtered/page/{sheet}/limit/{limit}")]
         public virtual ActionResult<Models.PaginationModel<TDisplayModel>> GetPaginateFiltered([FromBody] TFilterModel filterModel, int sheet = 1, int limit = 25)
         {
-            return BuildPaginationModelActionResult(sheet, limit, Repository.GetPagingOrderSelector(), filterModel);
+            return BuildPaginationModelActionResult(sheet, limit, filterModel);
         }
     }
 }

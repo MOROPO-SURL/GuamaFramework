@@ -27,6 +27,11 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             return base.Index(sheet, limit);
         }
 
+        protected override System.Func<Locality, object> GetOrderSelector()
+        {
+            return entity => entity.Name;
+        }
+
         protected override string GetFilterSessionID()
         {
             return "guamaframework-location-backend-backend-localities-filter";

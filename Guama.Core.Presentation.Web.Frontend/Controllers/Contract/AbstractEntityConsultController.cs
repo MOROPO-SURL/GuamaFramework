@@ -28,6 +28,16 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
 
         protected virtual void PopulateViewModelDisplayForDetail(TDisplayViewModel model, TEntity entity) { }
 
+        protected virtual System.Func<TEntity, object> GetOrderSelector()
+        {
+            return e => e.Id;
+        }
+
+        protected virtual bool IsOrderDescending()
+        {
+            return false;
+        }
+
         [HttpGet]
         [Route("")]
         [Route("page/{sheet}")]
@@ -36,7 +46,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                return BuildActionResultWithPaginationViewModel(sheet, limit, Repository.GetPagingOrderSelector(), null);
+                return BuildActionResultWithPaginationViewModel(sheet, limit, null);
             }
             catch (Common.Exceptions.NoContinuableActionException e)
             {
@@ -149,7 +159,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
 
         protected virtual System.Linq.Expressions.Expression<System.Func<TEntity, bool>> GetGlobalSelector() { return null; }
 
-        protected IActionResult BuildActionResultWithPaginationViewModel<TOrderingKey>(int page, int limit, System.Func<TEntity, TOrderingKey> ordering, IEntityFilterModel<TEntity, TId> filter)
+        protected IActionResult BuildActionResultWithPaginationViewModel(int page, int limit, IEntityFilterModel<TEntity, TId> filter)
         {
             IQueryable<TEntity> selection = null;
 
@@ -209,13 +219,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
 
                     var entities = new List<TEntity>();
 
-                    if (!Repository.IsPagingOrderDescending())
+                    if (!IsOrderDescending())
                     {
-                        entities = selection.OrderBy(ordering).Skip((page - 1) * limit).Take(limit).ToList();
+                        entities = selection.Skip((page - 1) * limit).Take(limit).OrderBy(GetOrderSelector()).ToList();
                     }
                     else
                     {
-                        entities = selection.OrderByDescending(ordering).Skip((page - 1) * limit).Take(limit).ToList();
+                        entities = selection.Skip((page - 1) * limit).Take(limit).OrderByDescending(GetOrderSelector()).ToList();
                     }
 
                     var models = new List<TDisplayViewModel>();

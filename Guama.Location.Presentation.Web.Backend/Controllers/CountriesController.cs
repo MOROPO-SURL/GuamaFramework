@@ -27,6 +27,11 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             return "guamaframework-location-backend-countries-filter";
         }
 
+        protected override System.Func<Country, object> GetOrderSelector()
+        {
+            return entity => entity.Name;
+        }
+
         [RequirePermissions(Permissions.CountryViewer)]
         public override IActionResult Filter(CountryFilterModel filterModel)
         {

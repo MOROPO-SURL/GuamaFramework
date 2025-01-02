@@ -15,7 +15,12 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [HttpPost("filtered")]
         public virtual ActionResult<TDisplayModel[]> GetFiltered([FromBody] TFilterModel filterModel)
         {
-            return Ok(Repository.FindBy(filterModel.GetSelector()).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
+            if (IsOrderDescending())
+            {
+                return Ok(Repository.FindBy(filterModel.GetSelector()).OrderByDescending(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            }
+
+            return Ok(Repository.FindBy(filterModel.GetSelector()).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpPost]
@@ -23,7 +28,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [Route("filtered/page/{sheet}/limit/{limit}")]
         public virtual ActionResult<Models.PaginationModel<TDisplayModel>> GetPaginateFiltered([FromBody] TFilterModel filterModel, int sheet = 1, int limit = 25)
         {
-            return BuildPaginationModelActionResult(sheet, limit, Repository.GetPagingOrderSelector(), filterModel);
+            return BuildPaginationModelActionResult(sheet, limit, filterModel);
         }
     }
 }

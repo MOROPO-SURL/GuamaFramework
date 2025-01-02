@@ -9,11 +9,6 @@ namespace MOROPO.Framework.Guama.Location.Persistence.ORM.EF.Repositories
         {
         }
 
-        public override System.Func<Entities.Municipality, object> GetPagingOrderSelector()
-        {
-            return e => e.Name;
-        }
-
         protected override System.Linq.IQueryable<Entities.Municipality> GetQueryableDbSet()
         {
             return base.GetQueryableDbSet()

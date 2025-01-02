@@ -18,6 +18,11 @@
             return httpClientHelperProvider.HttpClientHelper.GetAsync<TDisplayModel[]>(TargetController);
         }
 
+        public async System.Threading.Tasks.Task<long> CountAsync()
+        {
+            return await httpClientHelperProvider.HttpClientHelper.GetAsync<long>($"{TargetController}/count");
+        }
+
         public virtual System.Threading.Tasks.Task<Models.PaginationModel<TDisplayModel>> GetPaginateAsync(int page = 1, int limit = 25)
         {
             return httpClientHelperProvider.HttpClientHelper.GetAsync<Models.PaginationModel<TDisplayModel>>(string.Format("{0}/page/{1}/limit/{2}", TargetController, page, limit));

@@ -31,6 +31,11 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             return "guamaframework-location-backend-states-filter";
         }
 
+        protected override System.Func<State, object> GetOrderSelector()
+        {
+            return entity => entity.Name;
+        }
+
         [RequirePermissions(Permissions.StateViewer)]
         public override IActionResult Filter(StateFilterModel filterModel)
         {

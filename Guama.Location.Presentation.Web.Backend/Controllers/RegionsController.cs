@@ -31,6 +31,11 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             return "guamaframework-location-backend-regions-filter";
         }
 
+        protected override System.Func<Region, object> GetOrderSelector()
+        {
+            return entity => entity.Name;
+        }
+
         [RequirePermissions(Permissions.RegionViewer)]
         public override IActionResult Filter(RegionFilterModel filterModel)
         {

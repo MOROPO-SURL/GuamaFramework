@@ -32,6 +32,11 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             return "guamaframework-location-backend-municipalities-filter";
         }
 
+        protected override System.Func<Municipality, object> GetOrderSelector()
+        {
+            return entity => entity.Name;
+        }
+
         [RequirePermissions(Permissions.MunicipalityViewer)]
         public override IActionResult Filter(MunicipalityFilterModel filterModel)
         {

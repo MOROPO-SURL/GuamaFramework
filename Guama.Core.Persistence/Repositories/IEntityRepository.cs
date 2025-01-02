@@ -36,9 +36,5 @@ namespace MOROPO.Framework.Guama.Core.Persistence.Repositories
         int Count(Expression<Func<TEntity, bool>> criteria);
 
         int Count<TSpecializationEntity>(Expression<Func<TSpecializationEntity, bool>> criteria) where TSpecializationEntity : class, TEntity;
-
-        Func<TEntity, object> GetPagingOrderSelector();
-
-        bool IsPagingOrderDescending();
     }
 }

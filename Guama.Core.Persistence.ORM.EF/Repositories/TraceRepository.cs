@@ -8,15 +8,5 @@ namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories
         public TraceRepository(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
         {
         }
-
-        public override System.Func<Trace, object> GetPagingOrderSelector()
-        {
-            return entity => entity.Registered;
-        }
-
-        public override bool IsPagingOrderDescending()
-        {
-            return true;
-        }
     }
 }
