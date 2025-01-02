@@ -8,8 +8,8 @@
 		<Product>GuamaFramework</Product>
 		<Authors>MOROPO DotNet DevTeam</Authors>
 		<Company>MOROPO S.U.R.L.</Company>
-		<Copyright>© MOROPO 2024 - Todos los derechos reservados.</Copyright>
-		<Version>6.0.0.31</Version>
+		<Copyright>© MOROPO 2025 - Todos los derechos reservados.</Copyright>
+		<Version>6.0.0.32</Version>
 		<PackageProjectUrl>https://www.moropo.cu</PackageProjectUrl>
 	</PropertyGroup>
 
@@ -19,12 +19,5 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Guama.Core.Persistence\Guama.Core.Persistence.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Configurators\Contract\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Configurators\Contract\" />
 	</ItemGroup>
 </Project>
