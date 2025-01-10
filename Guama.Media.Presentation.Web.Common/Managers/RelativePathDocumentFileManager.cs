@@ -20,7 +20,7 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Managers
 
         public string GetDocumentAbsoluteFilePath(Persistence.Entities.Document entity)
         {
-            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.DocumentsDirectoryName, string.Format("{0}.{1}", entity.Id, MimeTypes.MimeTypeMap.GetExtension(entity.ContentType)));
+            return System.IO.Path.Combine(env.WebRootPath, options.Value.MediaDirectoryName, options.Value.DocumentsDirectoryName, $"{entity.Id}{MimeTypes.MimeTypeMap.GetExtension(entity.ContentType)}");
         }
 
         public byte[] GetDocumentFileContent(Persistence.Entities.Document entity)

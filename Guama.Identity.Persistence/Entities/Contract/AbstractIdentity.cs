@@ -14,6 +14,8 @@
         [System.ComponentModel.DataAnnotations.Required]
         public string Name { get; set; }
 
+        public string Alias { get; set; }
+
         public System.DateTime? BornDate { get; set; }
 
         public string About { get; set; }

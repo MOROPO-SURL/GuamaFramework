@@ -16,17 +16,15 @@ namespace MOROPO.Framework.Guama.Identity.Persistence.Entities
 
         public string LastName { get; set; }
 
-        public string Alias { get; set; }
-
         public Enumerations.Sex Sex { get; set; }
 
         public Enumerations.CivilStatus CivilStatus { get; set; }
 
-        public ICollection<OrganizationPersonMembershipBridge> OrganizationMembershipBridges { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("ImageId")]
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey(nameof(ImageId))]
         public Media.Persistence.Entities.Image Image { get; set; }
         public System.Guid? ImageId { get; set; }
+
+        public List<OrganizationPersonMembershipBridge> OrganizationMembershipBridges { get; set; }
 
         public List<PersonEmailContactItemBridge> EmailContactItemBridges { get; set; }
 
