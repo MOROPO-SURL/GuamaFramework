@@ -40,7 +40,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
         [HttpGet]
         [Route("[action]")]
-        public Microsoft.AspNetCore.Mvc.ActionResult<long> Count()
+        public ActionResult<long> Count()
         {
             return Ok(Repository.Count());
         }

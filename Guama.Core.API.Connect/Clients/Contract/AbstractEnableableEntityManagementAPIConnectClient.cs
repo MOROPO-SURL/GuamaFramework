@@ -18,5 +18,15 @@
         {
             return httpClientHelperProvider.HttpClientHelper.PutAsync(string.Format("{0}/disable/{1}", TargetController, key));
         }
+
+        public virtual System.Threading.Tasks.Task<TDisplayModel[]> GetEnabledAsync()
+        {
+            return httpClientHelperProvider.HttpClientHelper.GetAsync<TDisplayModel[]>($"{TargetController}/enabled");
+        }
+
+        public virtual System.Threading.Tasks.Task<TDisplayModel[]> GetDisabledAsync()
+        {
+            return httpClientHelperProvider.HttpClientHelper.GetAsync<TDisplayModel[]>($"{TargetController}/disabled");
+        }
     }
 }
