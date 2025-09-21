@@ -42,6 +42,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [Route("[action]")]
         public ActionResult<long> Count()
         {
+            var globalSelector = GetGlobalSelector();
+
+            if (globalSelector != null)
+            {
+                return Ok(Repository.Count(globalSelector));
+            }
+
             return Ok(Repository.Count());
         }
 
