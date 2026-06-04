@@ -34,7 +34,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
                 }
                 catch (System.Exception e)
                 {
-                    logger.LogError(e.InnerException, e.Message);
+                    logger.LogError(e, e.Message);
 
                     return Conflict();
                 }
@@ -66,13 +66,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
                 }
                 catch (System.InvalidOperationException e)
                 {
-                    logger.LogError(e.InnerException, e.Message);
+                    logger.LogError(e, e.Message);
 
                     return NoContent();
                 }
                 catch (System.Exception e)
                 {
-                    logger.LogError(e.InnerException, e.Message);
+                    logger.LogError(e, e.Message);
 
                     return Conflict();
                 }
@@ -98,13 +98,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException e)
             {
-                logger.LogError(e.InnerException, e.Message);
+                logger.LogError(e, e.Message);
 
                 return Conflict();
             }
             catch (System.Exception e)
             {
-                logger.LogError(e.InnerException, e.Message);
+                logger.LogError(e, e.Message);
 
                 return NoContent();
             }
