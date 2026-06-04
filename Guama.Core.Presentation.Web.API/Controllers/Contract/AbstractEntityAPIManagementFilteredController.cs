@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using MOROPO.Framework.Guama.Core.Persistence.Repositories;
 using System.Linq;
 
 namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
@@ -11,14 +12,15 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
         where TFilterModel : class, Persistence.Presentation.Models.Filter.Contract.IEntityFilterModel<TEntity, TId>
     {
-        public AbstractEntityAPIManagementFilteredController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, IStringLocalizer localizer, ILogger<AbstractEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) : base(repository, localizer, logger)
+        public AbstractEntityAPIManagementFilteredController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, IStringLocalizer localizer, ILogger<AbstractEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 
         [HttpPost("filtered")]
         public virtual ActionResult<TDisplayModel[]> GetFiltered([FromBody] TFilterModel filterModel)
         {
-            return Ok(Repository.FindBy(filterModel.GetSelector()).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.FindBy(filterModel.GetSelector()).ToArray().Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpPost]

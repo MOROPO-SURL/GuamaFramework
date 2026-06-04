@@ -13,7 +13,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
         where TFilterModel : class, IEntityFilterModel<TEntity, TId>
     {
-        public AbstractArchivableEntityManagementFilteredController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEntityManagementFilteredController<TEntity, TId, TInputViewModel, TDisplayViewModel, TFilterModel>> logger) : base(repository, localizer, logger)
+        public AbstractArchivableEntityManagementFilteredController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEntityManagementFilteredController<TEntity, TId, TInputViewModel, TDisplayViewModel, TFilterModel>> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MOROPO.Framework.Guama.Core.Persistence.Repositories;
 using MOROPO.Framework.Guama.Core.Presentation.Extensions;
 using System.Linq;
 
@@ -10,7 +11,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
 
     {
-        public AbstractEnableableEntityAPIManagementController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEnableableEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) : base(repository, localizer, logger)
+        public AbstractEnableableEntityAPIManagementController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEnableableEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 
@@ -19,11 +21,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = true;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }
@@ -38,11 +40,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = false;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }
@@ -60,10 +62,10 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpGet]
@@ -74,10 +76,10 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
     }
 }

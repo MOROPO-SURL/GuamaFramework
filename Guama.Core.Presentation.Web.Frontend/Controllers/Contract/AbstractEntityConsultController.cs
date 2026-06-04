@@ -16,12 +16,12 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         where TEntity : class, IEntity<TId>
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
     {
-        protected readonly IEntityRepository<TEntity, TId> Repository;
+        protected readonly IQueryEntityRepository<TEntity, TId> queryRepository;
 
-        public AbstractEntityConsultController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityConsultController<TEntity, TId, TDisplayViewModel>> logger)
+        public AbstractEntityConsultController(IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityConsultController<TEntity, TId, TDisplayViewModel>> logger)
             : base(localizer, logger)
         {
-            Repository = repository;
+            this.queryRepository = queryRepository;
         }
 
         protected virtual void PopulateViewModelDisplayForList(TDisplayViewModel model, TEntity entity) { }
@@ -66,7 +66,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 var model = new TDisplayViewModel();
 
@@ -170,22 +170,22 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
             {
                 if (filter != null)
                 {
-                    selection = Repository.FindBy(globalSelector).Where(filterSelector);
+                    selection = queryRepository.FindBy(globalSelector).Where(filterSelector);
                 }
                 else
                 {
-                    selection = Repository.FindBy(globalSelector);
+                    selection = queryRepository.FindBy(globalSelector);
                 }
             }
             else
             {
                 if (filter != null)
                 {
-                    selection = Repository.FindBy(filterSelector);
+                    selection = queryRepository.FindBy(filterSelector);
                 }
                 else
                 {
-                    selection = Repository.GetAll();
+                    selection = queryRepository.GetAll();
                 }
             }
 

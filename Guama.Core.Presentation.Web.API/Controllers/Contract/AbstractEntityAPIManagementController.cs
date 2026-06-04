@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using MOROPO.Framework.Guama.Core.Persistence.Repositories;
 
 namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 {
@@ -9,26 +10,30 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TInputModel : class, Persistence.Presentation.Models.Contract.IEntityInputModel<TEntity, TId>, new()
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractEntityAPIManagementController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, IStringLocalizer localizer, ILogger<AbstractEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) : base(repository, localizer, logger)
+        protected readonly ICommandEntityRepository<TEntity, TId> commandRepository;
+
+        public AbstractEntityAPIManagementController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, IStringLocalizer localizer, ILogger<AbstractEntityAPIManagementController<TEntity, TId, TInputModel, TDisplayModel>> logger) 
+            : base(queryRepository, localizer, logger)
         {
+            this.commandRepository = commandRepository;
         }
 
         [HttpPost]
-        public virtual ActionResult Create([FromBody] TInputModel inputModel)
+        public virtual ActionResult Create([FromBody] TInputModel model)
         {
-            ValidateCreate(inputModel);
+            ValidateCreate(model);
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var entity = inputModel.Export();
+                    var entity = model.Export();
 
-                    PreCreate(entity, inputModel);
+                    PreCreate(entity, model);
 
-                    Repository.Add(entity, User.Identity.Name);
+                    commandRepository.Add(entity, User.Identity.Name);
 
-                    PostCreate(entity, inputModel);
+                    PostCreate(entity, model);
 
                     return Ok();
                 }
@@ -44,23 +49,23 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         }
 
         [HttpPut]
-        public virtual ActionResult Edit([FromBody] TInputModel inputModel)
+        public virtual ActionResult Edit([FromBody] TInputModel model)
         {
-            ValidateEdit(inputModel);
+            ValidateEdit(model);
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var entity = Repository.Get(inputModel.Id);
+                    var entity = commandRepository.Get(model.Id);
 
-                    inputModel.Mergue(entity);
+                    model.Mergue(entity);
 
-                    PreEdit(entity, inputModel);
+                    PreEdit(entity, model);
 
-                    Repository.Update(entity, User.Identity.Name);
+                    commandRepository.Update(entity, User.Identity.Name);
 
-                    PostEdit(entity, inputModel);
+                    PostEdit(entity, model);
 
                     return Ok();
                 }
@@ -86,11 +91,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 PreDelete(entity);
 
-                Repository.Delete(entity, User.Identity.Name);
+                commandRepository.Delete(entity, User.Identity.Name);
 
                 PostDelete(entity);
 

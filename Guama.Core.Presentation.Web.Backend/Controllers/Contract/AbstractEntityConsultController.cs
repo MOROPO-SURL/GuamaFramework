@@ -6,8 +6,8 @@
         where TEntity : class, Persistence.Entities.Contract.IEntity<TId>
         where TDisplayViewModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractEntityConsultController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityConsultController<TEntity, TId, TDisplayViewModel>> logger)
-            : base(repository, localizer, logger)
+        public AbstractEntityConsultController(Persistence.Repositories.IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityConsultController<TEntity, TId, TDisplayViewModel>> logger)
+            : base(queryRepository, localizer, logger)
         {
         }
     }

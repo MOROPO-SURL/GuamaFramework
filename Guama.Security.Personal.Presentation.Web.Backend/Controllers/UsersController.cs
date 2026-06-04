@@ -19,13 +19,13 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
     [Area("security")]
     public class UsersController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEnableableEntityManagementFilteredController<User, string, UserInputViewModel, UserDisplayViewModel, UsersFilterModel>
     {
-        private readonly IEntityRepository<Role, System.Guid> roleRepository;
-        private readonly IEntityRepository<Identity.Persistence.Entities.PersonIdentity, System.Guid> identityRepository;
-        private readonly IEntityRepository<Media.Persistence.Entities.Image, System.Guid> imageRepository;
+        private readonly IQueryEntityRepository<Role, System.Guid> roleRepository;
+        private readonly ICommandEntityRepository<Identity.Persistence.Entities.PersonIdentity, System.Guid> identityRepository;
+        private readonly ICommandEntityRepository<Media.Persistence.Entities.Image, System.Guid> imageRepository;
         private readonly Media.Presentation.Web.Common.Managers.Facade.IImageFileManagerFacade imageFileManager;
 
-        public UsersController(Media.Presentation.Web.Common.Managers.Facade.IImageFileManagerFacade imageFileManager, IEntityRepository<Media.Persistence.Entities.Image, System.Guid> imageRepository, IEntityRepository<Identity.Persistence.Entities.PersonIdentity, System.Guid> identityRepository, IEntityRepository<Role, System.Guid> roleRepository, IEntityRepository<User, string> repository, Microsoft.Extensions.Localization.IStringLocalizer<UsersController> localizer, ILogger<UsersController> logger)
-            : base(repository, localizer, logger)
+        public UsersController(Media.Presentation.Web.Common.Managers.Facade.IImageFileManagerFacade imageFileManager, ICommandEntityRepository<Media.Persistence.Entities.Image, System.Guid> imageRepository, ICommandEntityRepository<Identity.Persistence.Entities.PersonIdentity, System.Guid> identityRepository, IQueryEntityRepository<Role, System.Guid> roleRepository, ICommandEntityRepository<User, string> commandRepository, IQueryEntityRepository<User, string> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer<UsersController> localizer, ILogger<UsersController> logger)
+            : base(commandRepository, queryRepository, localizer, logger)
         {
             this.roleRepository = roleRepository;
             this.identityRepository = identityRepository;
@@ -53,40 +53,40 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserCreator)]
         public override IActionResult Create()
         {
-            var modelInput = new UserWithPasswordInputViewModel();
+            var model = new UserWithPasswordInputViewModel();
 
-            ConfigureCreate(modelInput);
+            ConfigureCreate(model);
 
-            return View(modelInput);
+            return View(model);
         }
 
-        protected override void PreCreate(User entity, UserInputViewModel modelInput)
+        protected override void PreCreate(User entity, UserInputViewModel model)
         {
             entity.Password = entity.Password.ToHashedPassword();
 
             entity.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(entity);
 
-            if (modelInput.ImageFile == null) return;
+            if (model.ImageFile == null) return;
 
             using (var memoryStream = new System.IO.MemoryStream())
             {
-                modelInput.ImageFile.CopyTo(memoryStream);
+                model.ImageFile.CopyTo(memoryStream);
 
-                var image = new Media.Persistence.Entities.Image { ContentType = modelInput.ImageFile.ContentType, Length = modelInput.ImageFile.Length, About = "User " + entity.Id };
+                var image = new Media.Persistence.Entities.Image { ContentType = model.ImageFile.ContentType, Length = model.ImageFile.Length, About = "User " + entity.Id };
 
                 imageRepository.Add(image, User.Identity.Name, false);
 
-                imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), modelInput.ImageFile.ContentType);
+                imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), model.ImageFile.ContentType);
 
                 entity.Identity.ImageId = image.Id;
                 entity.Identity.Image = image;
             }
 
-            base.PreCreate(entity, modelInput);
+            base.PreCreate(entity, model);
         }
 
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserCreator)]
-        public override IActionResult Create(UserInputViewModel modelInput)
+        public override IActionResult Create(UserInputViewModel model)
         {
             if (Request.Form.Files.Count > 0)
             {
@@ -96,9 +96,9 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
                 {
                     ModelState.ClearValidationState("ImageFile");
 
-                    modelInput.ImageFile = formFile;
+                    model.ImageFile = formFile;
 
-                    var updateModelTask = TryUpdateModelAsync(modelInput);
+                    var updateModelTask = TryUpdateModelAsync(model);
 
                     updateModelTask.Wait();
                 }
@@ -113,30 +113,30 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
             Request.Form.TryGetValue("Password", out StringValues passwords);
             Request.Form.TryGetValue("ConfirmPassword", out StringValues confirmations);
 
-            modelInput = new UserWithPasswordInputViewModel
+            model = new UserWithPasswordInputViewModel
             {
                 Password = passwords.Count > 0 ? passwords.ToArray()[0] : string.Empty,
                 ConfirmPassword = confirmations.Count > 0 ? confirmations.ToArray()[0] : string.Empty,
-                Enabled = modelInput.Enabled,
-                HasFullAccess = modelInput.HasFullAccess,
-                SelectableRoles = modelInput.SelectableRoles,
-                Id = modelInput.Id,
-                Name = modelInput.Name,
-                LastName = modelInput.LastName,
-                ImageFile = modelInput.ImageFile
+                Enabled = model.Enabled,
+                HasFullAccess = model.HasFullAccess,
+                SelectableRoles = model.SelectableRoles,
+                Id = model.Id,
+                Name = model.Name,
+                LastName = model.LastName,
+                ImageFile = model.ImageFile
             };
 
-            if (TryValidateModel(modelInput))
+            if (TryValidateModel(model))
             {
-                var entity = modelInput.Export();
+                var entity = model.Export();
 
-                PreCreate(entity, modelInput);
+                PreCreate(entity, model);
 
                 try
                 {
-                    Repository.Add(entity, User.Identity.Name);
+                    commandRepository.Add(entity, User.Identity.Name);
 
-                    PostCreate(entity, modelInput);
+                    PostCreate(entity, model);
 
                     notification.Type = Core.Presentation.Models.View.NotificationType.Success;
                     notification.Message = GetCreationSuccessMessage();
@@ -155,23 +155,23 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
             TempData[Core.Presentation.Models.View.NotificationViewModel.DEFAULT_NOTIFICATION_MAP_KEY] = JsonConvert.SerializeObject(notification);
 
-            return View(modelInput);
+            return View(model);
         }
 
-        protected override void ConfigureCreate(UserInputViewModel modelInput)
+        protected override void ConfigureCreate(UserInputViewModel model)
         {
-            PopulateModelInputForAvailableRoles(modelInput);
+            PopulateModelInputForAvailableRoles(model);
         }
 
-        protected override void PostCreate(User entity, UserInputViewModel modelInput)
+        protected override void PostCreate(User entity, UserInputViewModel model)
         {
-            base.PostCreate(entity, modelInput);
+            base.PostCreate(entity, model);
 
             var roles = new Collection<Role>();
 
-            if (modelInput.SelectableRoles != null)
+            if (model.SelectableRoles != null)
             {
-                foreach (var item in modelInput.SelectableRoles.Where(item => item.Selected))
+                foreach (var item in model.SelectableRoles.Where(item => item.Selected))
                 {
                     roles.Add(roleRepository.Get(item.Id));
                 }
@@ -188,7 +188,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
                 entity.RoleBridges.Add(bridge);
             }
 
-            Repository.Update(entity, User.Identity.Name);
+            commandRepository.Update(entity, User.Identity.Name);
         }
 
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserEditor)]
@@ -198,23 +198,23 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
         }
 
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserEditor)]
-        public override IActionResult Edit(UserInputViewModel modelInput)
+        public override IActionResult Edit(UserInputViewModel model)
         {
             try
             {
-                var entity = Repository.Get(modelInput.Id);
+                var entity = queryRepository.Get(model.Id);
 
-                if (entity.Id.Equals(User.Identity.Name) && entity.Enabled != modelInput.Enabled)
+                if (entity.Id.Equals(User.Identity.Name) && entity.Enabled != model.Enabled)
                 {
                     ModelState.AddModelError("Enabled", GetCurrentUserNotDisactivableMessage());
                 }
 
-                if (entity.HasFullAccess && !User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString())) && entity.Enabled != modelInput.Enabled)
+                if (entity.HasFullAccess && !User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString())) && entity.Enabled != model.Enabled)
                 {
                     ModelState.AddModelError("Enabled", GetFullAccessUserNotDisactivableMessage());
                 }
 
-                if (entity.HasFullAccess && !User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString())) && entity.HasFullAccess != modelInput.HasFullAccess)
+                if (entity.HasFullAccess && !User.HasClaim(claim => claim.Type.Equals(ClaimTypes.AccountWithFullAccess) && claim.Value.Equals(true.ToString())) && entity.HasFullAccess != model.HasFullAccess)
                 {
                     ModelState.AddModelError("HasFullAccess", "FullAccessSessionRequired");
                 }
@@ -232,36 +232,36 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
                 if (formFile.Length > 0)
                 {
-                    modelInput.ImageFile = formFile;
+                    model.ImageFile = formFile;
 
-                    var updateModelTask = TryUpdateModelAsync(modelInput);
+                    var updateModelTask = TryUpdateModelAsync(model);
 
                     updateModelTask.Wait();
                 }
             }
 
-            return base.Edit(modelInput);
+            return base.Edit(model);
         }
 
-        protected override void ConfigureEdit(User entity, UserInputViewModel modelInput)
+        protected override void ConfigureEdit(User entity, UserInputViewModel model)
         {
-            PopulateModelInputForAvailableRoles(modelInput);
+            PopulateModelInputForAvailableRoles(model);
 
             var groups = entity.RoleBridges.Select(item => item.Stern).ToArray();
 
-            foreach (var item in modelInput.SelectableRoles)
+            foreach (var item in model.SelectableRoles)
             {
                 item.Selected = groups.Any(group => group.Id.Equals(item.Id));
             }
         }
 
-        protected override void PreEdit(User entity, UserInputViewModel modelInput)
+        protected override void PreEdit(User entity, UserInputViewModel model)
         {
-            base.PreEdit(entity, modelInput);
+            base.PreEdit(entity, model);
 
-            if (modelInput.ImageFile == null)
+            if (model.ImageFile == null)
             {
-                if (modelInput.ResetImage && entity.Identity.Image != null)
+                if (model.ResetImage && entity.Identity.Image != null)
                 {
                     imageFileManager.DeleteImageFile(entity.Identity.Image);
 
@@ -280,32 +280,32 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
             using (var memoryStream = new System.IO.MemoryStream())
             {
-                modelInput.ImageFile.CopyTo(memoryStream);
+                model.ImageFile.CopyTo(memoryStream);
 
-                var image = new Media.Persistence.Entities.Image { ContentType = modelInput.ImageFile.ContentType, Length = modelInput.ImageFile.Length, About = "User " + entity.Id };
+                var image = new Media.Persistence.Entities.Image { ContentType = model.ImageFile.ContentType, Length = model.ImageFile.Length, About = "User " + entity.Id };
 
                 imageRepository.Add(image, User.Identity.Name, false);
 
-                imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), modelInput.ImageFile.ContentType);
+                imageFileManager.SaveImageFileContent(image.Id, memoryStream.ToArray(), model.ImageFile.ContentType);
 
                 entity.Identity.ImageId = image.Id;
                 entity.Identity.Image = image;
             }
         }
 
-        protected override void PostEdit(User entity, UserInputViewModel modelInput)
+        protected override void PostEdit(User entity, UserInputViewModel model)
         {
-            base.PostEdit(entity, modelInput);
+            base.PostEdit(entity, model);
 
             entity.RoleBridges.Clear();
 
-            Repository.Update(entity, User.Identity.Name);
+            commandRepository.Update(entity, User.Identity.Name);
 
             var roles = new Collection<Role>();
 
-            if (modelInput.SelectableRoles != null)
+            if (model.SelectableRoles != null)
             {
-                foreach (var item in modelInput.SelectableRoles.Where(item => item.Selected))
+                foreach (var item in model.SelectableRoles.Where(item => item.Selected))
                 {
                     roles.Add(roleRepository.Get(item.Id));
                 }
@@ -320,7 +320,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
                 entity.RoleBridges.Add(bridge);
             }
 
-            Repository.Update(entity, User.Identity.Name);
+            commandRepository.Update(entity, User.Identity.Name);
         }
 
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserRemover)]
@@ -334,7 +334,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 if (entity.Id.Equals(User.Identity.Name))
                 {
@@ -368,11 +368,11 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
         }
 
         [RequirePermissions(Core.Security.Presentation.Constants.Permissions.UserRemover)]
-        public override IActionResult Delete(UserDisplayViewModel displayModel)
+        public override IActionResult Delete(UserDisplayViewModel model)
         {
             try
             {
-                var entity = Repository.Get(displayModel.Id);
+                var entity = queryRepository.Get(model.Id);
 
                 if (entity.Id.Equals(User.Identity.Name))
                 {
@@ -403,7 +403,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
             {
             }
 
-            return base.Delete(displayModel);
+            return base.Delete(model);
         }
 
         protected override void PostDelete(User entity)
@@ -424,7 +424,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 if (entity.Id.Equals(User.Identity.Name))
                 {
@@ -457,13 +457,13 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = true;
 
                 entity.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(entity);
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Core.Presentation.Models.View.NotificationType.Success, GetEnableSuccessMessage());
             }
@@ -482,7 +482,7 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 if (entity.Id.Equals(User.Identity.Name))
                 {
@@ -515,13 +515,13 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
 
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = false;
 
                 entity.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(entity);
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Core.Presentation.Models.View.NotificationType.Success, GetEnableSuccessMessage());
             }
@@ -552,14 +552,14 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Backend.Cont
                     }
                     else
                     {
-                        var user = Repository.Get(model.UserId);
+                        var user = commandRepository.Get(model.UserId);
 
                         user.Password = model.NewPassword.ToHashedPassword();
                         user.PasswordChangeRequired = model.ChangePasswordRequired;
 
                         user.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(user);
 
-                        Repository.Update(user, User.Identity.Name);
+                        commandRepository.Update(user, User.Identity.Name);
 
                         SetNextNotification(Core.Presentation.Models.View.NotificationType.Warning, "Cambiar Contraseña.", "Contraseña modificada con éxito.");
                     }

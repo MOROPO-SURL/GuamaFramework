@@ -10,9 +10,12 @@ namespace MOROPO.Framework.Guama.Security.Personal.Presentation.Web.Common.Exten
         {
             services.PerformIdentityWebCommonServiceRegistration();
 
-            services.AddScoped<IEntityRepository<Core.Security.Common.Persistence.Entities.Permission, int>, Core.Security.Common.Persistence.ORM.EF.Repositories.PermissionRepository>();
-            services.AddScoped<IEntityRepository<Core.Security.Common.Persistence.Entities.Role, System.Guid>, Core.Security.Common.Persistence.ORM.EF.Repositories.RoleRepository>();
-            services.AddScoped<IEntityRepository<Persistence.Entities.User, string>, Persistence.ORM.EF.Repositories.UserRepository>();
+            services.AddScoped<IQueryEntityRepository<Core.Security.Common.Persistence.Entities.Permission, int>, Core.Security.Common.Persistence.ORM.EF.Repositories.PermissionQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Core.Security.Common.Persistence.Entities.Permission, int>, Core.Security.Common.Persistence.ORM.EF.Repositories.PermissionCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<Core.Security.Common.Persistence.Entities.Role, System.Guid>, Core.Security.Common.Persistence.ORM.EF.Repositories.RoleQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Core.Security.Common.Persistence.Entities.Role, System.Guid>, Core.Security.Common.Persistence.ORM.EF.Repositories.RoleCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<Persistence.Entities.User, string>, Persistence.ORM.EF.Repositories.UserQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Persistence.Entities.User, string>, Persistence.ORM.EF.Repositories.UserCommandRepository>();
 
             services.AddScoped<Core.Presentation.Web.Security.Providers.Facade.IIdentityProviderFacade, Managers.IdentityManager>();
 

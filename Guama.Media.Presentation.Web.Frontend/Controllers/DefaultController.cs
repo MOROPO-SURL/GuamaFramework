@@ -9,12 +9,12 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Frontend.Controllers
     [Area("media")]
     public class DefaultController : Core.Presentation.Web.Common.Controllers.BaseWebController
     {
-        private readonly IEntityRepository<Image, System.Guid> imageRepository;
-        private readonly IEntityRepository<Thumbnail, System.Guid> thumnailRepository;
+        private readonly IQueryEntityRepository<Image, System.Guid> imageRepository;
+        private readonly IQueryEntityRepository<Thumbnail, System.Guid> thumnailRepository;
         private readonly Common.Managers.Facade.IImageFileManagerFacade imageFileManager;
         private readonly Common.Managers.Facade.IThumbnailFileManagerFacade thumbnailFileManager;
 
-        public DefaultController(IEntityRepository<Image, System.Guid> imageRepository, IEntityRepository<Thumbnail, System.Guid> thumnailRepository, Common.Managers.Facade.IThumbnailFileManagerFacade thumbnailFileManager, Common.Managers.Facade.IImageFileManagerFacade imageFileManager, Microsoft.Extensions.Localization.IStringLocalizer<DefaultController> localizer, ILogger<DefaultController> logger)
+        public DefaultController(IQueryEntityRepository<Image, System.Guid> imageRepository, IQueryEntityRepository<Thumbnail, System.Guid> thumnailRepository, Common.Managers.Facade.IThumbnailFileManagerFacade thumbnailFileManager, Common.Managers.Facade.IImageFileManagerFacade imageFileManager, Microsoft.Extensions.Localization.IStringLocalizer<DefaultController> localizer, ILogger<DefaultController> logger)
             : base(localizer, logger)
         {
             this.imageRepository = imageRepository;

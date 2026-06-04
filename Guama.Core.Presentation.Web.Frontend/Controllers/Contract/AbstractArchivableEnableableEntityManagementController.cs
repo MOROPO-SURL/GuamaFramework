@@ -10,7 +10,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         where TInputViewModel : class, IEntityInputModel<TEntity, TId>, new()
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractArchivableEnableableEntityManagementController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEnableableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger) : base(repository, localizer, logger)
+        public AbstractArchivableEnableableEntityManagementController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEnableableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 
@@ -21,11 +22,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = true;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetEnableSuccessMessage());
             }
@@ -50,11 +51,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = false;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetDisableSuccessMessage());
             }

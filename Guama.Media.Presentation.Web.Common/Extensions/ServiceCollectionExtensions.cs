@@ -10,10 +10,14 @@ namespace MOROPO.Framework.Guama.Media.Presentation.Web.Common.Extensions
     {
         public static void PerformMediaWebCommonServiceRegistration(this IServiceCollection services)
         {
-            services.AddScoped<IEntityRepository<Image, System.Guid>, ImageRepository>();
-            services.AddScoped<IEntityRepository<Thumbnail, System.Guid>, ThumbnailRepository>();
-            services.AddScoped<IEntityRepository<Video, System.Guid>, VideoRepository>();
-            services.AddScoped<IEntityRepository<Document, System.Guid>, DocumentRepository>();
+            services.AddScoped<IQueryEntityRepository<Image, System.Guid>, ImageQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Image, System.Guid>, ImageCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<Thumbnail, System.Guid>, ThumbnailQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Thumbnail, System.Guid>, ThumbnailCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<Video, System.Guid>, VideoQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Video, System.Guid>, VideoCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<Document, System.Guid>, DocumentQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<Document, System.Guid>, DocumentCommandRepository>();
 
             services.AddSingleton<Core.Persistence.ORM.EF.Providers.Facade.IDbSchemaConfigurationProviderFacade, Persistence.ORM.EF.Providers.DbSchemaConfigurationProvider>();
         }

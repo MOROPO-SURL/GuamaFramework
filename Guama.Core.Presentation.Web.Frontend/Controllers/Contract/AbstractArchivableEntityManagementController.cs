@@ -12,8 +12,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         where TInputViewModel : class, IEntityInputModel<TEntity, TId>, new()
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractArchivableEntityManagementController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger)
-            : base(repository, localizer, logger)
+        public AbstractArchivableEntityManagementController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractArchivableEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger)
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 
@@ -24,11 +24,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Archived = true;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetArchiveSuccessMessage());
             }
@@ -53,11 +53,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Archived = false;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 SetDefaultNotification(Presentation.Models.View.NotificationType.Success, GetUnarchiveSuccessMessage());
             }

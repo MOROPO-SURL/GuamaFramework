@@ -8,7 +8,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
         where TFilterModel : class, Persistence.Presentation.Models.Filter.Contract.IEntityFilterModel<TEntity, TId>
     {
-        public AbstractEntityAPIConsultFilteredController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityAPIConsultFilteredController<TEntity, TId, TDisplayModel, TFilterModel>> logger) : base(repository, localizer, logger)
+        public AbstractEntityAPIConsultFilteredController(Persistence.Repositories.IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, Microsoft.Extensions.Logging.ILogger<AbstractEntityAPIConsultFilteredController<TEntity, TId, TDisplayModel, TFilterModel>> logger) 
+            : base(queryRepository, localizer, logger)
         {
         }
 
@@ -17,10 +18,10 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             if (IsOrderDescending())
             {
-                return Ok(Repository.FindBy(filterModel.GetSelector()).OrderByDescending(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(filterModel.GetSelector()).OrderByDescending(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.FindBy(filterModel.GetSelector()).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.FindBy(filterModel.GetSelector()).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpPost]

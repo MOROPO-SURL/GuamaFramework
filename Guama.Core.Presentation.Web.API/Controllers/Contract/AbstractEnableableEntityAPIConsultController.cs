@@ -8,7 +8,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TEntity : class, Persistence.Entities.Contract.IEnableableEntity<TId>
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractEnableableEntityAPIConsultController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer<AbstractEnableableEntityAPIConsultController<TEntity, TId, TDisplayModel>> localizer, Microsoft.Extensions.Logging.ILogger<AbstractEnableableEntityAPIConsultController<TEntity, TId, TDisplayModel>> logger) : base(repository, localizer, logger)
+        public AbstractEnableableEntityAPIConsultController(Persistence.Repositories.IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer<AbstractEnableableEntityAPIConsultController<TEntity, TId, TDisplayModel>> localizer, Microsoft.Extensions.Logging.ILogger<AbstractEnableableEntityAPIConsultController<TEntity, TId, TDisplayModel>> logger) 
+            : base(queryRepository, localizer, logger)
         {
         }
 
@@ -20,10 +21,10 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpGet]
@@ -34,10 +35,10 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
     }
 }

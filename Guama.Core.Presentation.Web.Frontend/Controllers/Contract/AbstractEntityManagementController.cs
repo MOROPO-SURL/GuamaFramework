@@ -12,9 +12,12 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         where TInputViewModel : class, IEntityInputModel<TEntity, TId>, new()
         where TDisplayViewModel : class, IEntityDisplayModel<TEntity, TId>, new()
     {
-        public AbstractEntityManagementController(IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger)
-            : base(repository, localizer, logger)
+        protected readonly ICommandEntityRepository<TEntity, TId> commandRepository;
+
+        public AbstractEntityManagementController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityManagementController<TEntity, TId, TInputViewModel, TDisplayViewModel>> logger)
+            : base(queryRepository, localizer, logger)
         {
+            this.commandRepository = commandRepository;
         }
 
         protected virtual void ConfigureCreate(TInputViewModel model) { }
@@ -70,7 +73,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
 
                         PreCreate(entity, model);
 
-                        Repository.Add(entity, User.Identity.Name);
+                        commandRepository.Add(entity, User.Identity.Name);
 
                         PostCreate(entity, model);
 
@@ -114,7 +117,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 var model = new TInputViewModel();
 
@@ -155,7 +158,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
             {
                 ValidateEdit(model);
 
-                var entity = Repository.Get(model.Id);
+                var entity = commandRepository.Get(model.Id);
 
                 if (ModelState.IsValid)
                 {
@@ -174,7 +177,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
                             throw new System.InvalidOperationException(e.ErrorMessage, e);
                         }
 
-                        Repository.Update(entity, User.Identity.Name);
+                        commandRepository.Update(entity, User.Identity.Name);
 
                         PostEdit(entity, model);
 
@@ -220,7 +223,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 var model = new TDisplayViewModel();
 
@@ -257,11 +260,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.Frontend.Controllers.Cont
         {
             try
             {
-                var entity = Repository.Get(model.Id);
+                var entity = queryRepository.Get(model.Id);
 
                 PreDelete(entity);
 
-                Repository.Delete(entity, User.Identity.Name);
+                commandRepository.Delete(entity, User.Identity.Name);
 
                 PostDelete(entity);
 

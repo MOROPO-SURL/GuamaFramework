@@ -8,9 +8,9 @@ namespace MOROPO.Framework.Guama.Security.Essential.Presentation.Web.Common.Mana
     public class IdentityManager : Core.Presentation.Web.Security.Managers.Facade.IIdentityManagerFacade
     {
         private readonly ILogger<IdentityManager> logger;
-        private readonly Core.Persistence.Repositories.IEntityRepository<Persistence.Entities.User, string> userRepository;
+        private readonly Core.Persistence.Repositories.ICommandEntityRepository<Persistence.Entities.User, string> userRepository;
 
-        public IdentityManager(Core.Persistence.Repositories.IEntityRepository<Persistence.Entities.User, string> userRepository, ILogger<IdentityManager> logger)
+        public IdentityManager(Core.Persistence.Repositories.ICommandEntityRepository<Persistence.Entities.User, string> userRepository, ILogger<IdentityManager> logger)
         {
             this.logger = logger;
             this.userRepository = userRepository;
@@ -18,51 +18,55 @@ namespace MOROPO.Framework.Guama.Security.Essential.Presentation.Web.Common.Mana
 
         public ClaimsIdentity ProvideIdentity(string username, string password, string authenticationType)
         {
-            var entity = userRepository.FindOneBy(e => e.Id.Equals(username));
-
-            if (entity == null || !Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.IsCorrectlySigned(entity)) return null;
-
-            if (entity.Enabled && !entity.Password.Equals(password.ToHashedPassword()))
+            try
             {
-                entity.FailAuthenticationCount = entity.FailAuthenticationCount + 1;
+                var entity = userRepository.Get(username);
 
-                userRepository.Update(entity, username);
+                if (entity == null || !Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.IsCorrectlySigned(entity)) return null;
 
-                if (entity.FailAuthenticationCount > GetAuthenticationFailCountLimit())
+                if (entity.Enabled && !entity.Password.Equals(password.ToHashedPassword()))
                 {
-                    entity.FailAuthenticationCount = 0;
-                    entity.Enabled = false;
-
-                    entity.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(entity);
+                    entity.FailAuthenticationCount = entity.FailAuthenticationCount + 1;
 
                     userRepository.Update(entity, username);
 
-                    logger.LogInformation("User '{0}' reach fail authentication count limit ({1}) and was authomatically disabled.", username, GetAuthenticationFailCountLimit());
+                    if (entity.FailAuthenticationCount > GetAuthenticationFailCountLimit())
+                    {
+                        entity.FailAuthenticationCount = 0;
+                        entity.Enabled = false;
+
+                        entity.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(entity);
+
+                        userRepository.Update(entity, username);
+
+                        logger.LogInformation("User '{0}' reach fail authentication count limit ({1}) and was authomatically disabled.", username, GetAuthenticationFailCountLimit());
+
+                        return null;
+                    }
+
+                    if (entity.FailAuthenticationCount > GetAuthenticationFailCountTolerance())
+                    {
+                        throw new Core.Presentation.Web.Security.Exceptions.ForceAuthenticationDetectException();
+                    }
 
                     return null;
                 }
 
-                if (entity.FailAuthenticationCount > GetAuthenticationFailCountTolerance())
+                var claims = new System.Collections.Generic.List<Claim>();
+
+                ConfigureClaims(entity, claims);
+
+                if (entity.Enabled)
                 {
-                    throw new Core.Presentation.Web.Security.Exceptions.ForceAuthenticationDetectException();
+                    entity.FailAuthenticationCount = 0;
+                    entity.LastSessionDate = System.DateTime.Now;
+
+                    userRepository.Update(entity, username);
                 }
 
-                return null;
+                return new ClaimsIdentity(claims, authenticationType);
             }
-
-            var claims = new System.Collections.Generic.List<Claim>();
-
-            ConfigureClaims(entity, claims);
-
-            if (entity.Enabled)
-            {
-                entity.FailAuthenticationCount = 0;
-                entity.LastSessionDate = System.DateTime.Now;
-
-                userRepository.Update(entity, username);
-            }
-
-            return new ClaimsIdentity(claims, authenticationType);
+            catch { return null; }
         }
 
         protected virtual int GetAuthenticationFailCountTolerance()
@@ -110,18 +114,22 @@ namespace MOROPO.Framework.Guama.Security.Essential.Presentation.Web.Common.Mana
 
         public bool TryModifyPassword(string username, string oldPassword, string newPassword)
         {
-            var user = userRepository.FindOneBy(entity => entity.Id.Equals(username) && entity.Password.Equals(oldPassword.ToHashedPassword()));
+            try
+            {
+                var user = userRepository.Get(username);
 
-            if (user == null) return false;
+                if (!user.Password.Equals(oldPassword.ToHashedPassword())) return false;
 
-            user.Password = newPassword.ToHashedPassword();
-            user.PasswordChangeRequired = false;
+                user.Password = newPassword.ToHashedPassword();
+                user.PasswordChangeRequired = false;
 
-            user.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(user);
+                user.Signature = Persistence.ORM.EF.Helpers.Integrity.UserIntegrityHelper.GetSignature(user);
 
-            userRepository.Update(user, username);
+                userRepository.Update(user, username);
 
-            return true;
+                return true;
+            }
+            catch { return false; }
         }
     }
 }

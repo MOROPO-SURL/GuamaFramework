@@ -8,11 +8,12 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TEntity : class, Persistence.Entities.Contract.IEntity<TId>
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
     {
-        protected readonly Persistence.Repositories.IEntityRepository<TEntity, TId> Repository;
+        protected readonly Persistence.Repositories.IQueryEntityRepository<TEntity, TId> queryRepository;
 
-        public AbstractEntityAPIConsultController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityAPIConsultController<TEntity, TId, TDisplayModel>> logger) : base(localizer, logger)
+        public AbstractEntityAPIConsultController(Persistence.Repositories.IQueryEntityRepository<TEntity, TId> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer localizer, ILogger<AbstractEntityAPIConsultController<TEntity, TId, TDisplayModel>> logger) 
+            : base(localizer, logger)
         {
-            Repository = repository;
+            this.queryRepository = queryRepository;
         }
 
         protected virtual System.Func<TEntity, object> GetOrderSelector()
@@ -32,17 +33,17 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 
             if (selector != null)
             {
-                return Ok(Repository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+                return Ok(queryRepository.FindBy(selector).OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
             }
 
-            return Ok(Repository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
+            return Ok(queryRepository.GetAll().OrderBy(GetOrderSelector()).Select(entity => EntityToDisplayModel(entity)).ToArray());
         }
 
         [HttpGet]
         [Route("[action]")]
         public ActionResult<long> Count()
         {
-            return Ok(Repository.Count());
+            return Ok(queryRepository.Count());
         }
 
         [HttpGet]
@@ -58,7 +59,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                return Ok(EntityToDisplayModel(Repository.Get(key)));
+                return Ok(EntityToDisplayModel(queryRepository.Get(key)));
             }
             catch (System.Exception e)
             {
@@ -90,22 +91,22 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             {
                 if (filterModel != null)
                 {
-                    selection = Repository.FindBy(globalSelector).Where(filterSelector);
+                    selection = queryRepository.FindBy(globalSelector).Where(filterSelector);
                 }
                 else
                 {
-                    selection = Repository.FindBy(globalSelector);
+                    selection = queryRepository.FindBy(globalSelector);
                 }
             }
             else
             {
                 if (filterModel != null)
                 {
-                    selection = Repository.FindBy(filterSelector);
+                    selection = queryRepository.FindBy(filterSelector);
                 }
                 else
                 {
-                    selection = Repository.GetAll();
+                    selection = queryRepository.GetAll();
                 }
             }
 

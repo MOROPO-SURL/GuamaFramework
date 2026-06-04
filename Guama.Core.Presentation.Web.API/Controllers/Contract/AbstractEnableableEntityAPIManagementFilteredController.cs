@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using MOROPO.Framework.Guama.Core.Persistence.Repositories;
 
 namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
 {
@@ -10,7 +11,8 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         where TDisplayModel : class, Persistence.Presentation.Models.Contract.IEntityDisplayModel<TEntity, TId>, new()
         where TFilterModel : class, Persistence.Presentation.Models.Filter.Contract.IEntityFilterModel<TEntity, TId>
     {
-        public AbstractEnableableEntityAPIManagementFilteredController(Persistence.Repositories.IEntityRepository<TEntity, TId> repository, IStringLocalizer localizer, ILogger<AbstractEnableableEntityAPIManagementFilteredController<TEntity, TId, TInputModel, TDisplayModel, TFilterModel>> logger) : base(repository, localizer, logger)
+        public AbstractEnableableEntityAPIManagementFilteredController(ICommandEntityRepository<TEntity, TId> commandRepository, IQueryEntityRepository<TEntity, TId> queryRepository, IStringLocalizer localizer, ILogger<AbstractEnableableEntityAPIManagementFilteredController<TEntity, TId, TInputModel, TDisplayModel, TFilterModel>> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
         }
 
@@ -19,11 +21,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = true;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }
@@ -40,11 +42,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = commandRepository.Get(key);
 
                 entity.Enabled = false;
 
-                Repository.Update(entity, User.Identity.Name);
+                commandRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }

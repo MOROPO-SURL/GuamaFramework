@@ -19,11 +19,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 entity.Archived = true;
 
-                Repository.Update(entity, User.Identity.Name);
+                queryRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }
@@ -40,11 +40,11 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         {
             try
             {
-                var entity = Repository.Get(key);
+                var entity = queryRepository.Get(key);
 
                 entity.Archived = false;
 
-                Repository.Update(entity, User.Identity.Name);
+                queryRepository.Update(entity, User.Identity.Name);
 
                 return Ok();
             }

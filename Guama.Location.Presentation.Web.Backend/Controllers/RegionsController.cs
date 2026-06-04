@@ -13,11 +13,12 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
     [Area("location")]
     public class RegionsController : Core.Presentation.Web.Backend.Controllers.Contract.AbstractEntityManagementFilteredController<Region, System.Guid, RegionInputViewModel, RegionDisplayViewModel, RegionFilterModel>
     {
-        private readonly IEntityRepository<Country, System.Guid> countryRepository;
+        private readonly IQueryEntityRepository<Country, System.Guid> countryQueryRepository;
 
-        public RegionsController(IEntityRepository<Country, System.Guid> countryRepository, IEntityRepository<Region, System.Guid> repository, Microsoft.Extensions.Localization.IStringLocalizer<RegionsController> localizer, Microsoft.Extensions.Logging.ILogger<RegionsController> logger) : base(repository, localizer, logger)
+        public RegionsController(IQueryEntityRepository<Country, System.Guid> countryQueryRepository, ICommandEntityRepository<Region, System.Guid> commandRepository, IQueryEntityRepository<Region, System.Guid> queryRepository, Microsoft.Extensions.Localization.IStringLocalizer<RegionsController> localizer, Microsoft.Extensions.Logging.ILogger<RegionsController> logger) 
+            : base(commandRepository, queryRepository, localizer, logger)
         {
-            this.countryRepository = countryRepository;
+            this.countryQueryRepository = countryQueryRepository;
         }
 
         [RequirePermissions(Permissions.RegionViewer)]
@@ -80,7 +81,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
 
         private void PopulateWithCountries(RegionInputViewModel modelInput)
         {
-            modelInput.Countries = countryRepository.GetAll().Select(entity => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = entity.Id.ToString(), Text = entity.Name }).ToArray();
+            modelInput.Countries = countryQueryRepository.GetAll().Select(entity => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Value = entity.Id.ToString(), Text = entity.Name }).ToArray();
         }
 
         protected override void ConfigureCreate(RegionInputViewModel modelInput)
@@ -108,7 +109,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             base.PreCreate(entity, modelInput);
 
             entity.CountryId = modelInput.CountryId;
-            entity.Country = countryRepository.Get(modelInput.CountryId.Value);
+            entity.Country = countryQueryRepository.Get(modelInput.CountryId.Value);
         }
 
         protected override void PreEdit(Region entity, RegionInputViewModel modelInput)
@@ -118,7 +119,7 @@ namespace MOROPO.Framework.Guama.Location.Presentation.Web.Backend.Controllers
             if (entity.CountryId != modelInput.CountryId)
             {
                 entity.CountryId = modelInput.CountryId;
-                entity.Country = countryRepository.Get(modelInput.CountryId.Value);
+                entity.Country = countryQueryRepository.Get(modelInput.CountryId.Value);
             }
         }
     }

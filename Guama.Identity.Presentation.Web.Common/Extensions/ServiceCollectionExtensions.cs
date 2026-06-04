@@ -14,13 +14,20 @@ namespace MOROPO.Framework.Guama.Identity.Presentation.Web.Common.Extensions
             services.PerformMediaWebCommonServiceRegistration();
             services.PerformLocationWebCommonServiceRegistration();
 
-            services.AddScoped<IEntityRepository<EmailContactItem, System.Guid>, EmailContactItemRepository>();
-            services.AddScoped<IEntityRepository<PhoneContactItem, System.Guid>, PhoneContactItemRepository>();
-            services.AddScoped<IEntityRepository<SocialContactItem, System.Guid>, SocialContactItemRepository>();
-            services.AddScoped<IEntityRepository<WebSiteContactItem, System.Guid>, WebSiteContactItemRepository>();
-            services.AddScoped<IEntityRepository<PostalContactItem, System.Guid>, PostalContactItemRepository>();
-            services.AddScoped<IEntityRepository<PersonIdentity, System.Guid>, PersonIdentityRepository>();
-            services.AddScoped<IEntityRepository<OrganizationIdentity, System.Guid>, OrganizationIdentityRepository>();
+            services.AddScoped<IQueryEntityRepository<EmailContactItem, System.Guid>, EmailContactItemQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<EmailContactItem, System.Guid>, EmailContactItemCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<PhoneContactItem, System.Guid>, PhoneContactItemQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<PhoneContactItem, System.Guid>, PhoneContactItemCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<SocialContactItem, System.Guid>, SocialContactItemQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<SocialContactItem, System.Guid>, SocialContactItemCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<WebSiteContactItem, System.Guid>, WebSiteContactItemQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<WebSiteContactItem, System.Guid>, WebSiteContactItemCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<PostalContactItem, System.Guid>, PostalContactItemQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<PostalContactItem, System.Guid>, PostalContactItemCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<PersonIdentity, System.Guid>, PersonIdentityQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<PersonIdentity, System.Guid>, PersonIdentityCommandRepository>();
+            services.AddScoped<IQueryEntityRepository<OrganizationIdentity, System.Guid>, OrganizationIdentityQueryRepository>();
+            services.AddScoped<ICommandEntityRepository<OrganizationIdentity, System.Guid>, OrganizationIdentityCommandRepository>();
 
             services.AddSingleton<Core.Persistence.ORM.EF.Providers.Facade.IDbSchemaConfigurationProviderFacade, Persistence.ORM.EF.Providers.DbSchemaConfigurationProvider>();
         }
