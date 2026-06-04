@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MOROPO.Framework.Guama.Core.Persistence.Entities.Contract;
+using MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Context.Contract;
 using System.Linq;
 
 namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract
@@ -71,6 +72,27 @@ namespace MOROPO.Framework.Guama.Core.Persistence.ORM.EF.Repositories.Contract
                 if (DbContext is Context.Contract.ITraceableDbContext)
                 {
                     (DbContext as Context.Contract.ITraceableDbContext).SaveChanges(author, commit);
+                }
+                else
+                {
+                    DbContext.SaveChanges(commit);
+                }
+            }
+
+            return bridge;
+        }
+
+        public virtual TBridge Update(TBridge bridge, string author, bool commit = true)
+        {
+            var entry = DbContext.Entry(bridge);
+
+            entry.State = EntityState.Modified;
+
+            if (commit)
+            {
+                if (DbContext is ITraceableDbContext)
+                {
+                    (DbContext as ITraceableDbContext).SaveChanges(author, commit);
                 }
                 else
                 {

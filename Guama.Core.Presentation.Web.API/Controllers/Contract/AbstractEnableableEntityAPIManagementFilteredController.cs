@@ -31,7 +31,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             }
             catch (System.Exception e)
             {
-                logger.LogError(e.InnerException, e.Message);
+                logger.LogError(e, e.Message);
 
                 return NoContent();
             }
@@ -52,7 +52,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             }
             catch (System.Exception e)
             {
-                logger.LogError(e.InnerException, e.Message);
+                logger.LogError(e, e.Message);
 
                 return NoContent();
             }

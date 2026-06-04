@@ -43,6 +43,13 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
         [Route("[action]")]
         public ActionResult<long> Count()
         {
+            var globalSelector = GetGlobalSelector();
+
+            if (globalSelector != null)
+            {
+                return Ok(queryRepository.Count(globalSelector));
+            }
+
             return Ok(queryRepository.Count());
         }
 
@@ -63,7 +70,7 @@ namespace MOROPO.Framework.Guama.Core.Presentation.Web.API.Controllers.Contract
             }
             catch (System.Exception e)
             {
-                logger.LogError(e.InnerException, e.Message);
+                logger.LogError(e, e.Message);
 
                 return NotFound();
             }

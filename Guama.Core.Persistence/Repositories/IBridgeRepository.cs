@@ -23,6 +23,8 @@ namespace MOROPO.Framework.Guama.Core.Persistence.Repositories
 
         TBridge Add(TBridge bridge, string author, bool commit = true);
 
+        TBridge Update(TBridge entity, string author, bool commit = true);
+
         void Delete(TBridge bridge, string author, bool commit = true);
 
         int Count();
