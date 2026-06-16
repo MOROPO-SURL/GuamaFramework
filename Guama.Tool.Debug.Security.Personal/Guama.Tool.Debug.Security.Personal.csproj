@@ -1,31 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<AssemblyName>MOROPO.Framework.Guama.Tool.Debug.Security.Personal</AssemblyName>
-	<RootNamespace>MOROPO.Framework.Guama.Tool.Debug.Security.Personal</RootNamespace>
-	<Version>0.1.0</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>MOROPO.Framework.Guama.Tool.Debug.Security.Personal</AssemblyName>
+		<RootNamespace>MOROPO.Framework.Guama.Tool.Debug.Security.Personal</RootNamespace>
+		<Version>6.1.0.0</Version>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Guama.Tool.Debug.Security.Personal' " />
-  <ItemGroup>
-	<PackageReference Include="AspNetCore.Authentication.ApiKey" Version="1.0.0" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
-		<PrivateAssets>all</PrivateAssets>
-		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	</PackageReference>
-	<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
-	<PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-	<PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
-	<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-	<PackageReference Include="SkiaSharp" Version="2.88.6" />
-	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-	<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
-  </ItemGroup>
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Guama.Tool.Debug.Security.Personal' " />
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.Authentication.ApiKey" Version="1.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.6" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Guama.Media.Presentation.Web.Common\Guama.Media.Presentation.Web.Common.csproj" />
-    <ProjectReference Include="..\Guama.Security.Personal.Presentation.Web.Backend\Guama.Security.Personal.Presentation.Web.Backend.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Guama.Media.Presentation.Web.Common\Guama.Media.Presentation.Web.Common.csproj" />
+		<ProjectReference Include="..\Guama.Security.Personal.Presentation.Web.Backend\Guama.Security.Personal.Presentation.Web.Backend.csproj" />
+	</ItemGroup>
 
 </Project>
